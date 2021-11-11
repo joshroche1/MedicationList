@@ -2,8 +2,12 @@
 
 Built from Maven archetype: spring-ws-archetype (org.springframework.ws)
 
+mvn -B archetype:generate -DarchetypeGroupId=org.springframework.ws \
+    -DarchetypeArtifactId=spring-ws-archetype \
+	  -DgroupId=cmsc495 -DartifactId=myRx
+
 To build the project:
-### mvn package
+#mvn package
 
 ## Directory Structure:
 - src/pom.xml
