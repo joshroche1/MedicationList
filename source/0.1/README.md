@@ -22,3 +22,5 @@ Tells the app server how to deliver web content to the user (html, css, ect)
 
 ## /src/main/webapp/WEB-INF/spring-ws-servlet.xml #
 Bean definitions for Spring
+
+### Files in this directory are base templates at the time of upload
