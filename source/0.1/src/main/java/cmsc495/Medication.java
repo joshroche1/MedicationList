@@ -20,10 +20,6 @@ public class Medication {
     this.prescriber = provider;
   }  
   
-  public String setName(String name) {
-    this.name = name;
-    return name;
-  }
   public double setDosage(double dose) {
     this.dosage = dose;
     return dose;
