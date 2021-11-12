@@ -21,20 +21,37 @@ public class Medication {
   }  
   
   public String setName(String name) {
-    
+    this.name = name;
     return name;
   }
   public double setDosage(double dose) {
-    
+    this.dosage = dose;
     return dose;
   }
   public String setDoseUnit(String unit) {
-    
+    this.doseUnit = unit;
     return unit;
   }
   public Date setExpDate(Date expdate) {
-    
+    this.expDate = expdate;
     return expdate;
   }
-  
+  public String getName() {
+    return this.name;
+  }
+  public double getDosage() {
+    return this.dosage;
+  }
+  public String getDoseUnit() {
+    return this.doseUnit;
+  }
+  public Date getIssueDate() {
+    return this.issueDate;
+  }
+  public Date getExpDate() {
+    return this.expDate;
+  }
+  public Provider getPrescriber() {
+    return this.prescriber;
+  }
 }
