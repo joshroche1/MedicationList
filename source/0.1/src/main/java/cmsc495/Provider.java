@@ -13,12 +13,14 @@ public class Provider {
   private String address = "";
   private String phone = "";
   private String physicianId = "";
+//  private String[] provider = {};
   private ArrayList patientList;
   
   public Provider() {
     
   }
   
+  /*
   public boolean register() {
     
     return false;
@@ -72,5 +74,5 @@ public class Provider {
     
     return false;
   }
-  
+  */
 }

@@ -17,6 +17,7 @@ public class Patient {
     
   }
   
+  /*
   public boolean register() {
     
     return false;
@@ -42,4 +43,5 @@ public class Patient {
   public ArrayList getMedList() {
     return this.medicationList;
   }
+  */
 }
