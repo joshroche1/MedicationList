@@ -38,7 +38,7 @@ public class Medication {
   public String getTestIssueDate() { return testIssueDate; }
   public String getTestExpDate() { return testExpDate; }
   public String getTestDescription() {
-    return DButil.getTestDescription();
+    return DButil.getTest();
   }
   /*
   public double setDosage(double dose) {

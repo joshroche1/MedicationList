@@ -1,83 +1,64 @@
 package cmsc495;
 
 import java.sql.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "beanDButil", eager = true)
 public class DButil {
 
-  private String teststring = "TEST Test test";
+  private static String teststring = "TEST Test test";
 
-  public Connection connect() {
-    Connection c = null;
+  public static Connection Connect() {
+    Connection conn = null;
     try {
       Class.forName("org.sqlite.JDBC");
-      c = DriverManager.getConnection("jdbc.sqlite:test.db");
+      // TEST DB FOR NOW
+      conn = DriverManager.getConnection("jdbc:sqlite:WEB-INF/classes/test.db");
+      conn.setAutoCommit(false);
     } catch (Exception e) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
+      System.out.println(e.getMessage());
     }
-    return c;
+    return conn;
   }
-  public ResultSet query(String sql) {
-    Connection c = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    c = this.connect();
+
+  public static String Select() {
+    String result = "";
+    int record = 0;
     try {
-      c.setAutoCommit(false);
-      stmt = c.createStatement();
-      rs = stmt.executeQuery(sql);
-//      rs.close();
+      Connection c = Connect();
+      Statement stmt = c.createStatement();
+      ResultSet rs = stmt.executeQuery("select * from Patient;");
+      result += "SQL: ";
+      while (rs.next()) {
+        record++;
+        result += "Record: " + record;
+        int id = rs.getInt("id");
+        String last = rs.getString("lastname");
+        String first = rs.getString("firstname");
+//        int age = rs.getInt("age");
+        result += " " + id + " " + last + " " + first + " "/* + age + " "*/;
+      }
+      rs.close();
       stmt.close();
       c.close();
+      result += " END";
     } catch (Exception e) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
-    }
-    return rs;
-  }
-  public String select(String text) {
-    String result = "";
-    try {
-      ResultSet rsselect = this.query(text);
-      while (rsselect.next()) {
-        result += rsselect.next() + " ";
-      }
-    } catch (Exception e) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
+      result += e.getMessage();
     }
     return result;
   }
-  public void insert(String text) {
+  public static void Insert() {
 
   }
-  public void delete(String text) {
+  public static void Update() {
 
   }
-  public void update(String text) {
+  public static void Delete() {
 
   }
 
-  /* FILESYSTEM UTILITIES */
-  public static String getTestDescription() {
-    System.out.println("DButil.getTestDescription\n");
-    String result = "TEST TEST TEST ";
-    try {
-      File fileObj = new File("lorem.txt");
-      Scanner scannerObj = new Scanner(fileObj);
-      while (scannerObj.hasNextLine()) {
-        result += scannerObj.nextLine();
-      }
-    } catch (FileNotFoundException e) {
-      System.out.println(e.toString());
-      e.printStackTrace();
-    }
-    return result;
-  }
-  public String getTest() { return teststring; }
+  public static String getTest() { return teststring; }
 }

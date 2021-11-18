@@ -47,7 +47,7 @@
 <!-- TEST CODE -->
 <!-- DBUTIL TEST-->
 <div>
-#{beanDButil.getTestDescription()}
+#{beanDButil.Select()}
 </div>
 <div>
 #{beanDButil.getTest()}
@@ -109,10 +109,10 @@
       <span onclick="document.getElementById('modalMedication').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">X</span>
       <div class="w3-container">
         <h1>#{beanMedication.getTestName()}</h1>
-        <p>#{beanDButil.getTestDescription()}</p>
+        <p>#{beanDButil.getTest()}</p>
       </div>
       <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-        <button onclick="document.getElementById('modalPatient').style.display='none'" type="button" class="w3-button w3-red">Close</button>
+        <button onclick="document.getElementById('modalMedication').style.display='none'" type="button" class="w3-button w3-red">Close</button>
       </div>
     </div>
   </div>
