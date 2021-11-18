@@ -1,9 +1,15 @@
 package cmsc495;
 
 import java.sql.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import javax.faces.bean.ManagedBean;
 
+@ManagedBean(name = "beanDButil", eager = true)
 public class DButil {
 
+  private String teststring = "TEST Test test";
 
   public Connection connect() {
     Connection c = null;
@@ -56,4 +62,22 @@ public class DButil {
   public void update(String text) {
 
   }
+
+  /* FILESYSTEM UTILITIES */
+  public static String getTestDescription() {
+    System.out.println("DButil.getTestDescription\n");
+    String result = "TEST TEST TEST ";
+    try {
+      File fileObj = new File("lorem.txt");
+      Scanner scannerObj = new Scanner(fileObj);
+      while (scannerObj.hasNextLine()) {
+        result += scannerObj.nextLine();
+      }
+    } catch (FileNotFoundException e) {
+      System.out.println(e.toString());
+      e.printStackTrace();
+    }
+    return result;
+  }
+  public String getTest() { return teststring; }
 }
