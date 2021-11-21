@@ -1,7 +1,17 @@
 package cmsc495;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
+@ManagedBean(name = "beanDButil", eager = true)
 public class DButil {
 
 
@@ -9,7 +19,7 @@ public class DButil {
     Connection c = null;
     try {
       Class.forName("org.sqlite.JDBC");
-      c = DriverManager.getConnection("jdbc.sqlite:test.db");
+      c = DriverManager.getConnection("jdbc:sqlite:test.db");
     } catch (Exception e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
@@ -28,7 +38,7 @@ public class DButil {
 //      rs.close();
       stmt.close();
       c.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
     }
@@ -38,10 +48,12 @@ public class DButil {
     String result = "";
     try {
       ResultSet rsselect = this.query(text);
+      result += "<tr><td>";
       while (rsselect.next()) {
-        result += rsselect.next() + " ";
+        result += rsselect.next() + "</td><td>";
       }
-    } catch (Exception e) {
+      result += "</td></tr>";
+    } catch (SQLException e) {
       System.err.println( e.getClass().getName() + ": " + e.getMessage() );
       System.exit(0);
     }
@@ -55,5 +67,11 @@ public class DButil {
   }
   public void update(String text) {
 
+  }
+  public String getTest() {
+    String result = "";
+    String test = this.select("select * from test;");
+    result += test;
+    return result;
   }
 }
