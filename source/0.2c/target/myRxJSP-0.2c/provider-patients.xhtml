@@ -29,16 +29,19 @@
         </div>
       </div>
       <div id="modalprofile" class="w3-modal">
-        <div class="w3-modal-content">
-          <div class="w3-container w3-card">
-            <span onclick="document.getElementById('modalprofile').style.display='none'" class="w3-button w3-display-topright">X</span>
-            <table class="w3-table">
-              <tr><th></th><th><h1>MR/MS/MX/DR LASTNAME FIRSTNAME</h1></th></tr>
-              <tr><td></td><td><h2>email@address.com</h2></td></tr>
-              <tr><td>Home:</td><td>123-456-7890</td></tr>
-              <tr><td>Address:</td><td>123 Street Rd.<br />Cityville, ZZ 99999</td></tr>
+        <div class="w3-modal-content w3-card w3-animate-zoom">
+          <div class="w3-center"><br></br>
+            <span onclick="document.getElementById('modalprofile').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">X</span>
+            <table class="w3-table-all">
+              <tr><th>DR</th><th>BROWN</th><th>EMMITT</th><th>L</th></tr>
+              <tr><td>brown@doc.edu</td>987-654-3210<td></td><td>121 Flux Lane, Gigawatte, STE 99999</td></tr>
+              <tr>...</tr>
+              <tr>...</tr>
             </table>
-      </div></div></div>
+            <button onclick="document.getElementById('modalprofile').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="middle" class="w3-container w3-mobile w3-card">
@@ -66,13 +69,36 @@
         <div class="w3-container w3-card">
           <span onclick="document.getElementById('modal01').style.display='none'" class="w3-button w3-display-topright">X</span>
           <table class="w3-table">
-            <tr><th></th><th><h1>MR/MS/MX/DR LASTNAME FIRSTNAME</h1></th></tr>
-            <tr><td></td><td><h2>email@address.com</h2></td></tr>
-            <tr><td>Home:</td><td>123-456-7890</td></tr>
-            <tr><td>Address:</td><td>123 Street Rd.<br />Cityville, ZZ 99999</td></tr>
+            <tr><th><h1>MR/MS/MX/DR LASTNAME FIRSTNAME</h1></th></tr>
+            <tr><td><h2>email@address.com</h2></td></tr>
+            <tr><td>123-456-7890</td></tr>
+            <tr><td>123 Street Rd.<br />Cityville, ZZ 99999</td></tr>
           </table>
 <!--          #{provider.getPatientMedList()} -->
-    </div></div></div>
+          <h:form id="provider-patient-medlist" class="w3-container">
+            <table class="w3-table-all">
+              <tr>
+                <td>
+                  <h:commandButton value="i" action="#"
+                                   class="w3-button w3-teal"></h:commandButton>
+                </td>
+                <td><h3>MEDICATION NAME</h3></td>
+                <td>12.5</td><td>mg</td>
+                <td>
+                  <h:commandButton value="#" action="#"
+                                   class="w3-button w3-green"></h:commandButton>
+                </td>
+                <td>
+                  <h:commandButton value="-" action="#"
+                                   class="w3-button w3-red"></h:commandButton>
+                </td>
+              </tr>
+            </table>
+          </h:form>
+          <button onclick="document.getElementById('modal01').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
+        </div>
+      </div>
+    </div>
 
     </div>
 
