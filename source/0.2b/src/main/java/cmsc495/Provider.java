@@ -64,7 +64,7 @@ public class Provider {
     
     return false;
   }
-  public Patient getPatient(String last, String first, String middle) {
+  public Patient getPatient(String last, String first, String dob) {
     
     return Patient;
   }
