@@ -73,6 +73,6 @@ public class Patient {
   public String logout() {
     HttpSession session = SessionUtils.getSession();
     session.invalidate();
-    return "login";
+    return "index";
   }
 }
