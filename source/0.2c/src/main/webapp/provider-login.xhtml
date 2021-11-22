@@ -13,9 +13,7 @@
 <body>
 
 <div class="w3-content">
-<!--
-  <div id="body" class="w3-container w3-auto">
--->  
+
     <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card w3-section">
       <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third"></div>
       <div class="w3-conatiner w3-cell w3-mobile w3-content w3-margin w3-third">
@@ -27,24 +25,36 @@
 
     <div class="w3-cell-row w3-section">
     <div class="w3-container w3-cell w3-cell-middle w3-mobile w3-twothird">
-      <form class="w3-container">
-        <label class="w3-text-blue">Username</label>
-        <input class="w3-input w3-border" />
-        <label class="w3-text-blue">Password</label>
-        <input class="w3-input w3-border" />
-        <label class="w3-text-blue">Access Code (can change this to something else like clinic code)</label>
-        <input class="w3-input w3-border" />
-        <button class="w3-button w3-teal">
-          <a href="provider-patients.xhtml">LOGIN</a>
-        </button>
-        <button class="w3-button w3-teal">RESET</button>
-      </form>
+    <h:form id="provider-login-form" class="w3-container">
+      <label class="w3-text-blue">Username</label>
+      <h:inputText id="username"
+               value="#{beanProvider.username}"
+			   class="w3-input w3-border"></h:inputText>
+      <h:message for="username"></h:message>
+      <label class="w3-text-blue">Password</label>
+      <h:inputSecret id="password"
+               value="#{beanProvider.password}"
+			   class="w3-input w3-border"></h:inputSecret>
+      <h:message for="password"></h:message>
+      <label class="w3-text-blue">Token</label>
+      <h:inputText id="token"
+                   value="#{beanProvider.token}"
+    	           class="w3-input w3-border"></h:inputText>
+      <h:message for="token"></h:message>
+      <h:commandButton value="LOGIN"
+                   action="#{beanProvider.validateUsernamePassword}"
+		   class="w3-button w3-teal"></h:commandButton>
+      <button class="w3-button w3-teal">RESET</button>
+    </h:form>
     </div>
 
       <div id="right" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
-        <table class="w3-table">
+        <table class="w3-table-all">
           <tr><a href="#">Forgot your username or password?</a></tr>
           <tr><a href="register.xhtml">Register for an account</a></tr>
+          <tr>Try these:</tr>
+          <tr>provider : password : 1111111</tr>
+          <tr>instructor : cmsc495 : 9999999</tr>
         </table>
       </div>
     </div>
