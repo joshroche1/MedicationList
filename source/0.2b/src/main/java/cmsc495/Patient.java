@@ -9,6 +9,8 @@ public class Patient {
   private String lastName = "";
   private String firstName = "";
   private String middleInitial = "";
+  private String dob = "";
+  private char sex = "";
   private String email = "";
   private String password = "";
   private String address = "";
