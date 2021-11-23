@@ -13,6 +13,12 @@ public class Medication {
   private Date expDate;
   private Provider prescriber;
   private String testinfo = "MEDICATION Meds meds!";
+
+  private String testName = "Placebo";
+  private double testDosage = 12.34;
+  private String testDoseUnit = "mg";
+  private String testIssueDate = "1900-01-01";
+  private String testExpDate = "2999-12-31";
   /*
   public Medication(String name, double dosage, String doseunit, Date issued, Date expired, Provider provider) {
     this.name = name;
@@ -25,6 +31,14 @@ public class Medication {
   
   public String getTest() {
     return this.testinfo;
+  }
+  public String getTestName() { return testName; }
+  public double getTestDosage() { return testDosage; }
+  public String getTestDoseUnit() { return testDoseUnit; }
+  public String getTestIssueDate() { return testIssueDate; }
+  public String getTestExpDate() { return testExpDate; }
+  public String getTestDescription() {
+    return DButil.getTest();
   }
   /*
   public double setDosage(double dose) {

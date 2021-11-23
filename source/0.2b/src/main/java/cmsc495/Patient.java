@@ -17,7 +17,15 @@ public class Patient {
   private String phone = "";
   private ArrayList medicationList;
   private String testinfo = "PATIENT Patient patient!!";
-  
+
+  private String testLastName = "Testing";
+  private String testFirstName = "Patient";
+  private String testMiddleInitial = "M";
+  private String testEmail = "patient@testing.net";
+  private String testPassword = "testing";
+  private String testAddress = "1234 Road St. Villageville, STE 56789";
+  private String testPhone = "12345678900";
+
   public Patient() {
     
   }
@@ -25,6 +33,14 @@ public class Patient {
   public String getTest() {
     return this.testinfo;
   }
+  public String getTestLastName() { return testLastName; }
+  public String getTestFirstName() { return testFirstName; }
+  public String getTestMiddleInitial() { return testMiddleInitial; }
+  public String getTestEmail() { return testEmail; }
+  public String getTestPassword() { return testPassword; }
+  public String getTestAddress() { return testAddress; }
+  public String getTestPhone() { return testPhone; }
+
   /*
   public boolean register() {
     
