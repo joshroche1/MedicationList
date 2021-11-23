@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import cmsc495.Patient;
 import cmsc495.DAOlogin;
 import cmsc495.SessionUtils;
 
@@ -28,7 +29,14 @@ public class Provider {
   private String testinfo = "PROVIDER Provider provider!";
 
   public Provider() {}
-
+  public Provider(String last, String first, String email, String username, String pass, String tkn) {
+    this.lastName = last;
+    this.firstName = first;
+    this.email = email;
+    this.username = username;
+    this.password = pass;
+    this.token = tkn;
+  }
 
   public void setLastName(String last) { this.lastName = last; }
   public void setFirstName(String first) { this.firstName = first; }
@@ -49,6 +57,13 @@ public class Provider {
   public String getToken() { return this.token; }
   public String getAddress() { return this.address; }
   public String getPhone() { return this.phone; }
+
+  public void addPatient() {}
+  public Patient getPatient(String last, String first, String dob) {
+    Patient pt = null;
+
+    return pt;
+  }
 
   public String validateUsernamePassword() {
   boolean valid = DAOlogin.validateProvider(username, password, token);

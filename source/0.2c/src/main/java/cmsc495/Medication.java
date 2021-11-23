@@ -13,48 +13,70 @@ public class Medication {
   private Date expDate;
   private Provider prescriber;
   private String testinfo = "MEDICATION Meds meds!";
-  /*
-  public Medication(String name, double dosage, String doseunit, Date issued, Date expired, Provider provider) {
+  
+  //Constructor method (basic)
+  public Medication(String name, double dosage, String doseUnit) {
+	  this.name = name;
+	  this.dosage = dosage;
+	  this.doseUnit = doseUnit;
+  }
+  
+  //Constructor method for Medication Class
+  public Medication(String name, double dosage, String doseUnit, Date issued, Date expired, Provider provider) {
     this.name = name;
     this.dosage = dosage;
-    this.doseUnit = doseunit;
+    this.doseUnit = doseUnit;
     this.issueDate = issued;
     this.expDate = expired;
     this.prescriber = provider;
-  }  */
+  }  
   
   public String getTest() {
     return this.testinfo;
   }
-  /*
-  public double setDosage(double dose) {
+  
+  //This method will update the dosage to the new amount
+  public void setDosage(double dose) {
     this.dosage = dose;
-    return dose;
   }
-  public String setDoseUnit(String unit) {
+  
+  //This method will update the unit of measurement for the dosage amount
+  public void setDoseUnit(String unit) {
     this.doseUnit = unit;
-    return unit;
   }
-  public Date setExpDate(Date expdate) {
+  
+  //This method will set the new expiration date for a medication
+  public void setExpDate(Date expdate) {
     this.expDate = expdate;
-    return expdate;
   }
-  public String getName() {
+  
+  //This method will retrn the name of a medication
+  public String getMedicationName() {
     return this.name;
   }
+  
+  //This method will return the dosage of a certain medication
   public double getDosage() {
     return this.dosage;
   }
+  
+  //This method will return the unit of measurement for a particular medication
   public String getDoseUnit() {
     return this.doseUnit;
   }
+ 
+  //This method will return the date that a particular medication was prescribed
   public Date getIssueDate() {
     return this.issueDate;
   }
+  
+  //This method will return the expiration date for the specified medication
   public Date getExpDate() {
     return this.expDate;
   }
+  
+  //This method will return the name of the physician that prescribed a particular prescription
   public Provider getPrescriber() {
     return this.prescriber;
-  } */
+  } 
 }
