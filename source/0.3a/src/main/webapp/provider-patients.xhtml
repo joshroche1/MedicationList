@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/css/w3.css"/>
+  <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+  <title>myRx</title>
+</head>
+<body>
+
+<div class="w3-content">
+  <div id="body" class="w3-container w3-mobile w3-auto">
+  
+    <div id="top" class="w3-container w3-bar w3-teal w3-card">
+    
+      <div class="w3-container w3-content w3-mobile w3-row w3-padding">
+        <div class="w3-container w3-center w3-col s4 m4 l4">
+          <a href="#"><button onclick="document.getElementById('modalprofile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">
+           Profile</button></a>
+        </div>
+        <div class="w3-container w3-center w3-col s4 m4 l4"><h1>myRx</h1></div>
+        <div class="w3-container w3-center w3-col s4 m4 l4">
+          <a href="index.xhtml"><button class="w3-button w3-green w3-round-xxlarge">
+           LOGOUT</button></a>
+        </div>
+      </div>
+      <div id="modalprofile" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom w3-card w3-center">
+          <span onclick="document.getElementById('modalprofile').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">X</span>
+          <table class="w3-table-all">
+            <tr><th>DR</th><th>BROWN</th><th>EMMITT</th><th>L</th></tr>
+            <tr><td>brown@doc.edu</td>987-654-3210<td></td><td>121 Flux Lane, Gigawatte, STE 99999</td></tr>
+          </table>
+          <button onclick="document.getElementById('modalprofile').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="middle" class="w3-container w3-mobile w3-card">
+
+      <h:dataTable value="#{beanProvider.Patients}" var="Patient" class="w3-table-all">
+        <h:column>
+          <f:facet name="header">Last Name</f:facet>
+          #{Patient.lastName}
+        </h:column>
+        <h:column>
+          <f:facet name="header">First Name</f:facet>
+          #{Patient.firstName}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Phone</f:facet>
+          #{Patient.phone}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Email</f:facet>
+          #{Patient.email}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Medications</f:facet>
+          <span onclick="#" class="w3-button w3-green">i</span>
+        </h:column>
+      </h:dataTable>
+
+      <div id="modalPatientMedList" class="w3-modal">
+        <div class="w3-modal-content w3-card w3-center w3-animate-zoom">
+          <h1>#{Patient.lastName}, #{Patient.firstName}</h1>
+          <h:dataTable value="#{beanProvider.PatientMeds}" var="Medication" class="w3-table-all">
+            <h:column>
+              <f:facet name="header">Medication</f:facet">
+              #{Medication.name}
+            </h:column>
+            <h:column>
+              <f:facet name="header">Dosage</f:facet">
+              #{Medication.dosage}
+            </h:column>
+            <h:column>
+              <f:facet name="header">Issue Date</f:facet">
+              #{Medication.issueDate}
+            </h:column>
+            <h:column>
+              <f:facet name="header">Expiration Date</f:facet">
+              #{Medication.expDate}
+            </h:column>
+            <h:column>
+              <f:facet name="header">+</f:facet">
+              <button onclick="document.getElementById('modalAddMed').style.display='block'" class="w3-button w3-green">+</button>
+            </h:column>
+            <h:column>
+              <f:facet name="header">-</f:facet">
+              <button onclick="#delMed() modal#" class="w3-button w3-red">-</button>
+            </h:column>
+          </h:dataTable>
+          <button onclick="document.getElementById('modalPatientMedList').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
+        </div>
+      </div>
+
+<div id="modalAddMed" class="w3-modal">
+  <div class="w3-modal-content w3-card w3-center w3-animate-zoom">
+  <button onclick="document.getElementById('modalAddMed').style.display='none'" class="w3-button w3-red">
+    <h:form id="add-med-form" class="w3-container">
+	  <label class="w3-text-blue">Medication Name</label>
+      <h:inputText id="medName"
+                   value="#{beanProvider.Medication.name}"
+			       class="w3-input w3-border"></h:inputText>
+      <h:message for="medName"></h:message>
+      <label class="w3-text-blue">Dosage</label>
+      <h:inputText id="medDosage"
+                   value="#{beanProvider.Medication.dosage}"
+			       class="w3-input w3-border"></h:inputText>
+      <h:message for="medDosage"></h:message>
+      <label class="w3-text-blue">Issue Date</label>
+      <h:inputText id="medIssueDate"
+                   value="#{beanProvider.Medication.issueDate}"
+	      		   class="w3-input w3-border"></h:inputText>
+      <h:message for="token">Expiration Date</h:message>
+	  <h:inputText id="medExpDate"
+                   value="#{beanProvider.Medication.expDate}"
+			       class="w3-input w3-border"></h:inputText>
+      <h:message for="medExpDate"></h:message>
+      <h:commandButton value="ADD"
+                   action="#{beanProvider.addMedication(Patient.lastName, Patient.firstName, Medication.name, Medication.dosage, Medication.issueDate, Medication.expDate)}"
+				   class="w3-button w3-teal"></h:commandButton>
+      <button class="w3-button w3-teal">RESET</button>
+	  <button onclick="document.getElementById('modalAddMed').style.display='none'" class="w3-button w3-red">CLOSE</button>
+	</h:form>
+  </div>
+</div>
+
+<!-- TEMPORARY TABLE TO ILLUSTRATE DATA PRESENTATION -->
+<table class="w3-table-all">
+<tr><th></th><th>Last Name</th><th>First Name</th><th>M.I.</th></tr>
+<tr>
+<td><button onclick="#" class="w3-button">i</button>
+</td><td>LASTNAME</td><td>FIRSTNAME</td><td>MI</td>
+</tr>
+<tr>
+<td><button onclick="#" class="w3-button">i</button>
+</td><td>LASTNAME</td><td>FIRSTNAME</td><td>MI</td>
+</tr>
+<tr>
+<td><button onclick="#" class="w3-button">i</button>
+</td><td>LASTNAME</td><td>FIRSTNAME</td><td>MI</td>
+</tr>
+</table>
+<!-- -->
+
+    <div id="bottom" class="w3-container w3-mobile w3-card">
+      <div class="w3-container w3-bar w3-mobile w3-row w3-padding">
+        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">HISTORY</button>
+        </div>
+        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">SHARE</button>
+        </div>
+        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">###</button>
+        </div>
+        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">###</button>
+        </div>
+<!-- PLACE MODAL FOR ADD PATIENT HERE -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
