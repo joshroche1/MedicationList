@@ -1,6 +1,7 @@
 package cmsc495;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import cmsc495.Medication;
 import cmsc495.Patient;
 import cmsc495.DAOlogin;
 import cmsc495.SessionUtils;
@@ -63,6 +65,47 @@ public class Provider {
     Patient pt = null;
 
     return pt;
+  }
+
+  public List<Patient> getPatients() {
+    List<Patient> patients = new ArrayList<Patient>();
+    // FILLER
+    String[] lastNames = {"Doe","Doe","Bimmy"};
+    String[] firstNames = {"John","Jane","Jimmy"};
+    String[] midinits = {"R","L","J"};
+    String[] emails = {"john@doe.net","jane@doe.net","jimmy@thebimmy.com"};
+    String[] addresses = {"123 Street Way, Citytown ZZ 99999","123 Street Way, Citytown ZZ 99999","1 Final Blvd, Fightville ZZ 99999"};
+    String[] phones = {"123-456-7890","987-654-3210","111-111-1111"};
+    for (int i = 0; i < 3; i++) {
+      Patient patient = new Patient();
+      patient.setLastName(lastNames[i]);
+      patient.setFirstName(firstNames[i]);
+      patient.setMiddleInitial(midinits[i]);
+      patient.setEmail(emails[i]);
+      patient.setAddress(addresses[i]);
+      patient.setPhone(phones[i]);
+      patients.add(patient);
+    }
+    return patients;
+  }
+  public List<Medication> getMedications() {
+    List<Medication> medications = new ArrayList<Medication>();
+    // FILLER
+    String[] names = {"Placebex","Placebropril"};
+    double[] doses = {10.2, 105};
+    String[] units = {"ug","mg"};
+    String[] issueds = {"21 Nov 2020","15 Feb 2021"};
+    String[] exps = {"10 Dec 2021","2 Jul 2022"};
+    for (int i = 0; i < 2; i++) {
+      Medication medication = new Medication();
+      medication.setName(names[i]);
+      medication.setDosage(doses[i]);
+      medication.setDoseUnit(units[i]);
+      medication.setIssueDate(issueds[i]);
+      medication.setExpDate(exps[i]);
+      medications.add(medication);
+    }
+    return medications;
   }
 
   public String validateUsernamePassword() {
