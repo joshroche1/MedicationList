@@ -20,7 +20,7 @@ public class Provider {
   private String lastName = "";
   private String firstName = "";
   private String middleInitial = "";
-  private char sex;
+  private String sex = "";
   private String email = "";
   private String username = "";
   private String password = "";
@@ -44,6 +44,7 @@ public class Provider {
   public void setFirstName(String first) { this.firstName = first; }
   public void setMiddleInitial(String mi) { this.middleInitial = mi; }
   public void setEmail(String em) { this.email = em; }
+  public void setSex(String sx) { this.sex = sx; }
   public void setUsername(String user) { this.username = user; }
   public void setPassword(String pass) { this.password = pass; }
   public void setToken(String token) { this.token = token; }
@@ -53,6 +54,7 @@ public class Provider {
   public String getLastName() { return this.lastName; }
   public String getFirstName() { return this.firstName; }
   public String getMiddleInitial() { return this.middleInitial; }
+  public String getSex() { return this.sex; }
   public String getEmail() { return this.email; }
   public String getUsername() { return this.username; }
   public String getPassword() { return this.password; }

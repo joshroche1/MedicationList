@@ -21,8 +21,8 @@
     
       <div class="w3-container w3-content w3-mobile w3-row w3-padding">
         <div class="w3-container w3-center w3-col s4 m4 l4">
-          <a href="#"><button onclick="document.getElementById('modalprofile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">
-           Profile</button></a>
+          <a href="provider-profile.xhtml"><button class="w3-button w3-green w3-round-xxlarge">
+           #{beanProvider.username}</button></a>
         </div>
         <div class="w3-container w3-center w3-col s4 m4 l4"><h1>myRx</h1></div>
         <div class="w3-container w3-center w3-col s4 m4 l4">
@@ -30,21 +30,12 @@
            LOGOUT</button></a>
         </div>
       </div>
-      <div id="modalprofile" class="w3-modal">
-        <div class="w3-modal-content w3-animate-zoom w3-card w3-center">
-          <span onclick="document.getElementById('modalprofile').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">X</span>
-          <table class="w3-table-all">
-            <tr><th>DR</th><th>BROWN</th><th>EMMITT</th><th>L</th></tr>
-            <tr><td>brown@doc.edu</td>987-654-3210<td></td><td>121 Flux Lane, Gigawatte, STE 99999</td></tr>
-          </table>
-          <button onclick="document.getElementById('modalprofile').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
-        </div>
-      </div>
+
     </div>
 
     <div id="middle" class="w3-container w3-mobile w3-card">
 
-      <h:dataTable value="#{beanProvider.patients}" var="patient" class="w3-table-all">
+      <h:dataTable id="providerPatientTable" value="#{beanDButil.getPatients(beanProvider.username)}" var="patient" class="w3-table-all">
         <h:column>
           <f:facet name="header">Last Name</f:facet>
           #{patient.lastName}
@@ -58,8 +49,14 @@
           #{patient.middleInitial}
         </h:column>
         <h:column>
+          <f:facet name="header">Sex</f:facet>
+          #{patient.sex}
+        </h:column>
+        <h:column>
           <f:facet name="header">Email</f:facet>
+          <h:outputLink value="mailto:#{patient.email}">
           #{patient.email}
+          </h:outputLink>
         </h:column>
         <h:column>
           <f:facet name="header">Physical Address</f:facet>
@@ -84,15 +81,9 @@
         <div class="w3-container w3-center w3-col s3 m3 l3">
           <button onclick="document.getElementById('modalAddPatient').style.display='block'" class="w3-button w3-teal w3-round-xxlarge">ADD PATIENT</button>
         </div>
-        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">SHARE</button>
-        </div>
-        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">###</button>
-        </div>
-        <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-teal w3-round-xxlarge">###</button>
-        </div>
         <div id="modalAddPatient" class="w3-modal">
           <div class="w3-modal-content w3-card w3-center w3-animate-zoom">
-            <button onclick="document.getElementById('modalAddMed').style.display='none'" class="w3-buttonw3-red">X</button>
+            <button onclick="document.getElementById('modalAddMed').style.display='none'" class="w3-button w3-red w3-display-topright">X</button>
             <h:form id="add-patient-form" class="w3-container">
               <label class="w3-text-blue">Last Name</label>
               <h:inputText id="patientLastName"

@@ -1,5 +1,6 @@
 package cmsc495;
 
+import cmsc495.DButil;
 
 public class DAOlogin {
 
@@ -12,6 +13,9 @@ public class DAOlogin {
       if (password.equals("cmsc495")) { return true; }
     } else if (username.equals("default")) {
       if (password.equals("user")) { return true; }
+    } else {
+      DButil dbu = new DButil();
+      if (dbu.validateUser(username,password)) { return true; }
     }
     return false;
   }
@@ -23,6 +27,9 @@ public class DAOlogin {
       if (password.equals("password") && token.equals("1111111")) { return true; }
     } else if (username.equals("instructor")) {
       if (password.equals("cmsc495") && token.equals("9999999")) { return true; }
+    } else {
+      DButil dbu = new DButil();
+      if (dbu.validateUser(user, pass, tkn)) { return true; }
     }
     return false;
   }

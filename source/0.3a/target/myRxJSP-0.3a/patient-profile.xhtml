@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/css/w3.css"/>
+  <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+  <title>myRx Profile</title>
+</head>
+<body>
+
+<div class="w3-content">
+
+  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card w3-section">
+    <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third">
+    </div>
+    <div class="w3-conatiner w3-cell w3-mobile w3-content w3-margin w3-third">
+      <h1>myRx</h1>
+      <h2>#{beanPatient.getCurrentUser()} Profile</h2>
+    </div>
+    <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third">
+    </div>
+  </div>
+
+  <div class="w3-cell-row w3-section">
+
+    <div class="w3-container w3-cell w3-cell-middle w3-mobile w3-twothird">
+      <h:form id="user-profile-form" class="w3-container">
+        <h:dataTable value="#"
+                     var="patient"
+                     class="w3-table-all">
+          <tr><td><label class="w3-text-blue">First Name:</label></td>
+	  <td>#{patient.firstName} ---</td><td>
+          <h:inputText id="userFirstName"
+                       value="FIRST NAME"
+                       required="true"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Middle Initial</label></td>
+	  <td>#{patient.middleInitial} ---</td><td>
+          <h:inputText id="userMiddleInitial"
+                       value="MIDDLE INITIAL"
+                       required="false"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Last Name</label></td>
+	  <td>#{patient.lastName} ---</td><td>
+          <h:inputText id="userLastName"
+                       value="LAST NAME"
+                       required="true"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Sex</label></td>
+          <td>#{patient.sex} ---</td><td>
+          <select name="sex"
+                  required="true"
+                  class="w3-select">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="N">Nonbinary</option>
+            <option value="X">Do Not Wish To Disclose</option>
+          </select>
+          <tr><td><label class="w3-text-blue">Email Address</label></td>
+	  <td>#{patient.email} ---</td><td>
+          <h:inputText id="userEmail"
+                       value="user@domain.end"
+                       required="true"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Physical Address</label></td>
+	  <td>#{patient.address} ---</td><td>
+          <h:inputText id="userAddress"
+                       value="1 Two Street, Threeville, ZZ 99999"
+                       required="false"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Phone Number</label></td>
+	  <td>#{patient.phone} ---</td><td>
+          <h:inputText id="userPhone"
+                       value="000-000-0000"
+                       required="false"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Username</label></td>
+	  <td>#{patient.username} ---</td><td>
+          <h:inputText id="userUsername"
+                       value="USERNAME"
+                       required="true"
+                       class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Password</label></td>
+	  <td></td><td>
+          <h:inputSecret id="userPassword"
+                         value=""
+                         required="true"
+                         class="w3-input w3-border" /></td></tr>
+          <tr><td><label class="w3-text-blue">Password Confirmation</label></td>
+	  <td></td><td>
+          <h:inputSecret id="userPassword2"
+                         value=""
+                         required="true"
+                         class="w3-input w3-border" /></td></tr>
+          <tr><td><h:commandButton value="UPDATE PROFILE"
+                           action="#"
+                           class="w3-button w3-teal"></h:commandButton></td><td>
+          <button type="reset" class="w3-button w3-teal">RESET</button></td></tr>
+	</h:dataTable>
+      </h:form>
+    </div>
+
+    <div id="right" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
+      <table class="w3-table">
+        <tr>Please fill out all applicable fields.</tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card w3-section">
+    <div class="w3-container w3-center w3-col s3 m3 l3">
+     <button onclick="history.back()" class="w3-button w3-white w3-round-xxlarge">BACK</button>
+    </div>
+  </div>
+	
+</div>  
+
+</body>
+</html>
