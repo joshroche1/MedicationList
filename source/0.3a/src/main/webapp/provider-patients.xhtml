@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/css/w3.css"/>
+  <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+  <title>myRx</title>
+</head>
+<body>
+
+<div class="w3-content">
+
+  <div id="body" class="w3-container w3-mobile w3-auto">
+  
+    <div id="top" class="w3-container w3-bar w3-teal w3-card">
+    
+      <div class="w3-container w3-content w3-mobile w3-row w3-padding">
+        <div class="w3-container w3-center w3-col s4 m4 l4">
+          <a href="provider-profile.xhtml"><button class="w3-button w3-green w3-round-xxlarge">
+           #{beanProvider.username}</button></a>
+        </div>
+        <div class="w3-container w3-center w3-col s4 m4 l4"><h1>myRx</h1></div>
+        <div class="w3-container w3-center w3-col s4 m4 l4">
+          <a href="index.xhtml"><button class="w3-button w3-green w3-round-xxlarge">
+           LOGOUT</button></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="middle" class="w3-container w3-mobile w3-card">
+
+      <h:dataTable id="providerPatientTable" value="#{beanDButil.getPatients(beanProvider.username)}" var="patient" class="w3-table-all">
+        <h:column>
+          <f:facet name="header">Last Name</f:facet>
+          #{patient.lastName}
+        </h:column>
+        <h:column>
+          <f:facet name="header">First Name</f:facet>
+          #{patient.firstName}
+        </h:column>
+        <h:column>
+          <f:facet name="header">MI</f:facet>
+          #{patient.middleInitial}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Sex</f:facet>
+          #{patient.sex}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Email</f:facet>
+          <h:outputLink value="mailto:#{patient.email}">
+          #{patient.email}
+          </h:outputLink>
+        </h:column>
+        <h:column>
+          <f:facet name="header">Physical Address</f:facet>
+          #{patient.address}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Phone</f:facet>
+          #{patient.phone}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Medications</f:facet>
+          <a href="provider-patient-meds.xhtml">
+            <button class="w3-button w3-green">VIEW</button>
+          </a>
+        </h:column>
+      </h:dataTable>
+
+    </div>
+
+    <div id="bottom" class="w3-container w3-mobile w3-card">
+      <div class="w3-container w3-bar w3-mobile w3-row w3-padding">
+        <div class="w3-container w3-center w3-col s3 m3 l3">
+          <button onclick="document.getElementById('modalAddPatient').style.display='block'" class="w3-button w3-teal w3-round-xxlarge">ADD PATIENT</button>
+        </div>
+        <div id="modalAddPatient" class="w3-modal">
+          <div class="w3-modal-content w3-card w3-center w3-animate-zoom">
+            <button onclick="document.getElementById('modalAddMed').style.display='none'" class="w3-button w3-red w3-display-topright">X</button>
+            <h:form id="add-patient-form" class="w3-container">
+              <label class="w3-text-blue">Last Name</label>
+              <h:inputText id="patientLastName"
+                           value="#"
+		           class="w3-input w3-border"></h:inputText>
+              <h:message for="patientLastName"></h:message>
+              <label class="w3-text-blue">First Name</label>
+              <h:inputText id="patientFirstName"
+                           value="#"
+		           class="w3-input w3-border"></h:inputText>
+              <h:message for="patientFirstName"></h:message>
+              <label class="w3-text-blue">MI</label>
+              <h:inputText id="patientMidInit"
+                           value="#"
+	      	           class="w3-input w3-border"></h:inputText>
+              <h:commandButton value="ADD"
+                               action="#"
+                               class="w3-button w3-teal"></h:commandButton>
+              <button class="w3-button w3-teal">RESET</button>
+	      <button onclick="document.getElementById('modalAddPatient').style.display='none'" class="w3-button w3-red">CLOSE</button>
+            </h:form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

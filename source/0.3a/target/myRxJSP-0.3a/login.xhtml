@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/css/w3.css"/>
+  <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
+  <title>myRx Login</title>
+</head>
+<body>
+
+<div class="w3-content">
+
+  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card w3-section">
+    <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third"></div>
+    <div class="w3-conatiner w3-cell w3-mobile w3-content w3-margin w3-third">
+      <h1>myRx</h1>
+      <h2>Online Medication List</h2>
+    </div>
+    <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third"></div>
+  </div>
+
+  <div class="w3-cell-row w3-section">
+
+    <div class="w3-container w3-cell w3-cell-middle w3-mobile w3-twothird">
+      <h:form id="patient-login-form" class="w3-container">
+        <label class="w3-text-blue">Username</label>
+        <h:inputText id="username"
+                     value="#{beanPatient.username}"
+                     class="w3-input w3-border"></h:inputText>
+        <h:message for="username"></h:message>
+        <label class="w3-text-blue">Password</label>
+        <h:inputSecret id="password"
+                       value="#{beanPatient.password}"
+                       class="w3-input w3-border"></h:inputSecret>
+        <h:message for="password"></h:message>
+        <h:commandButton value="LOGIN"
+                         action="#{beanPatient.validateUsernamePassword}"
+                         class="w3-button w3-teal"></h:commandButton>
+        <button type="reset" class="w3-button w3-teal">RESET</button>
+      </h:form>
+    </div>
+
+    <div id="right" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
+      <table class="w3-table">
+        <tr><td><a href="register.xhtml">
+          <button class="w3-button w3-teal w3-round-xxlarge">Register for an account</button></a></td></tr>
+        <tr><td>Try these:</td></tr>
+        <tr><td>patient : password</td></tr>
+        <tr><td>student : cmsc495</td></tr>
+        <tr><td>default : user</td></tr>
+        <tr><td><h3>Users in Database (local MySQL)</h3></td></tr>
+        <tr><td><h3>johndoe : password</h3></td></tr>
+        <tr><td><h3>janedoe : password</h3></td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card w3-section">
+    <a href="index.xhtml"><h2>myRX</h2></a>
+  </div>
+	
+</div>  
+
+</body>
+</html>
