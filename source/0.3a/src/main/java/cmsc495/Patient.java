@@ -29,14 +29,9 @@ public class Patient {
   private String address = "";
   private String phone = "";
   private Patient profile;
-  private String testinfo = "PATIENT Patient patient!!";
 
-  public Patient() {
-  }
+  public Patient() {}
 
-  public String getTest() {
-    return this.testinfo;
-  }
   public void setLastName(String last) { this.lastName = last; }
   public void setFirstName(String first) { this.firstName = first; }
   public void setMiddleInitial(String mi) { this.middleInitial = mi;}
@@ -69,62 +64,6 @@ public class Patient {
     return user;
   }
 
-/*
-  public List<Medication> getMedications() {
-    List<Medication> medications = new ArrayList<Medication>();
-    Medication med1 = new Medication();
-    med1.setName("NAME");
-    med1.setDosage(0);
-    med1.setDoseUnit("UNIT");
-    med1.setIssueDate("DD MMM YYYY");
-    med1.setExpDate("DD MMM YYYY");
-    med1.setPrescriber("Dr. NAME");
-    medications.add(med1);
-    try {
-      ResultSet rs = null;
-      DButil dbu = new DButil();
-      rs = dbu.getPatientMedList(this.username);
-      if (rs != null) {
-        while (rs.next()) {
-          Medication med = new Medication();
-          med.setName(rs.getString("name"));
-          med.setDosage(rs.getInt("dosage"));
-          med.setDoseUnit(rs.getString("doseUnit"));
-          med.setIssueDate(rs.getString("issueDate"));
-          med.setExpDate(rs.getString("expDate"));
-          med.setPrescriber(rs.getString("provider"));
-          medications.add(med);
-        }
-      } else {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Cannot fetch medications from database", "..."));
-      }
-    } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
-    }
-    return medications;
-  }
-  public Patient getProfile(String user) {
-    profile = new Patient();
-    try {
-      ResultSet rs = null;
-      DButil dbu = new DButil();
-      rs = dbu.getPatient(user);
-      profile.firstName = rs.getString("firstName");
-      profile.middleInitial = rs.getString("middleInitial");
-      profile.lastName = rs.getString("lastName");
-      profile.sex = rs.getString("sex");
-      profile.email = rs.getString("email");
-      profile.address = rs.getString("address");
-      profile.phone = rs.getString("phone");
-      rs.close();
-    } catch (SQLException ex) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Cannot fetch user details from database", "..."));
-    }
-    return profile;
-  }
-*/
   public String validateUsernamePassword() {
     boolean valid = DAOlogin.validatePatient(username, password);
     if (valid) {
