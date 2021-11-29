@@ -167,10 +167,4 @@ public class DButil {
     }
     return rs;
   }
-  public String getTest() {
-    String result = "";
-    String test = this.select("select * from test;");
-    result += test;
-    return result;
-  }
 }
