@@ -60,19 +60,6 @@ public class Patient {
   public String getPassword() { return this.password; }
   public String getAddress() { return this.address; }
   public String getPhone() { return this.phone; }
-
-  public String register() {
-    boolean result = false;
-    DButil dbu = new DButil();
-    result = dbu.registerPatient(username,password,firstName,middleInitial,lastName,sex,email,address,phone);
-    if (result) { 
-      return "index"; 
-    } else {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Cannot register at this time", "..."));
-    }
-    return "login";
-  }
   
   public String updateProfile() {
     String[] strarr = {username,password,firstName,middleInitial,lastName,sex,email,address,phone};
@@ -91,19 +78,6 @@ public class Patient {
                    FacesMessage.SEVERITY_WARN, "Cannot register at this time", "..."));
     }
     return "login";
-  }
-  
-  public String deleteProfile(String user) {
-    boolean result = false;
-    DButil dbu = new DButil();
-    result = dbu.deletePatient(user);
-    if (result) {
-      return "index";
-    } else {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Unable to delete profile", "..."));
-    }
-    return "index";
   }
   
   public boolean validatePassword() {
