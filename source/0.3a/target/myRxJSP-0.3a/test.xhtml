@@ -26,16 +26,161 @@
 
   <div class="w3-cell-row w3-section">
 
-    <div id="left" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
-
-    </div>
-
-    <div id="middle" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
-   
-    </div>
-
-    <div id="right" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
-
+    <div id="middle" class="w3-container w3-cell w3-cell-middle w3-mobile">
+      <div class="w3-container w3-card w3-padding-16">
+        <h:dataTable id="testPatientTable"
+                     value="#{beanDButil.getPatients()}"
+                     var="pt" class="w3-table-all">
+          <h:column>
+            <f:facet name="header">Username</f:facet>
+            #{pt.username}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Password</f:facet>
+            #{pt.password}
+          </h:column>
+          <h:column>
+            <f:facet name="header">First</f:facet>
+            #{pt.firstName}
+          </h:column>
+          <h:column>
+            <f:facet name="header">MI</f:facet>
+            #{pt.middleInitial}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Last</f:facet>
+            #{pt.lastName}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Sex</f:facet>
+            #{pt.sex}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{pt.email}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Phone</f:facet>
+            #{pt.phone}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Address</f:facet>
+            #{pt.address}
+          </h:column>
+        </h:dataTable>
+        <h:form class="w3-container">
+          <h:dataTable value="#{beanPatient}" var="patient" class="w3-table-all">
+            <h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>
+              <h:inputText id="userUsername" value="#{beanPatient.username}" required="true" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Password</label></f:facet>
+              <h:inputSecret id="userPassword" value="#{beanPatient.password}" required="true" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
+              <h:inputText id="userFirstName" value="#{beanPatient.firstName}" required="true" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Middle Initial</label></f:facet>
+              <h:inputText id="userMiddleInitial" value="#{beanPatient.middleInitial}" required="false" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
+              <h:inputText id="userLastName" value="#{beanPatient.lastName}" required="true" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Sex</label></f:facet>
+              <h:selectOneMenu value="#{beanPatient.sex}" required="true" class="w3-select">
+                <f:selectItem itemValue="M" itemLabel="Male" />
+                <f:selectItem itemValue="F" itemLabel="Female" />
+                <f:selectItem itemValue="N" itemLabel="Nonbinary" />
+                <f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
+              </h:selectOneMenu>
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Email Address</label></f:facet>
+              <h:inputText id="userEmail" value="#{beanPatient.email}" required="true" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Physical Address</label></f:facet>
+              <h:inputText id="userAddress" value="#{beanPatient.address}" required="false" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Phone Number</label></f:facet>
+              <h:inputText id="userPhone" value="#{beanPatient.phone}" required="false" class="w3-input w3-border" />
+            </h:column>
+            <h:column>
+              <h:commandButton value="ADD" action="#{beanPatient.addPatient()}" class="w3-button w3-teal"></h:commandButton>
+              <button type="reset" class="w3-button w3-teal">RESET</button>
+            </h:column>
+          </h:dataTable>
+        </h:form>
+      </div>
+      <div class="w3-container w3-card w3-padding-16">
+        <h:dataTable id="testProviderTable"
+                     value="#{beanDButil.getProviders()}"
+                     var="pr" class="w3-table-all">
+          <h:column>
+            <f:facet name="header">First</f:facet>
+            #{pr.firstName}
+          </h:column>
+          <h:column>
+            <f:facet name="header">MI</f:facet>
+            #{pr.middleInitial}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Last</f:facet>
+            #{pr.lastName}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Sex</f:facet>
+            #{pr.sex}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Token</f:facet>
+            #{pr.token}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{pr.email}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Phone</f:facet>
+            #{pr.phone}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Address</f:facet>
+            #{pr.address}
+          </h:column>
+        </h:dataTable>
+      </div>
+      <div class="w3-container w3-card w3-padding-16">
+        <h:dataTable id="testMedicationTable"
+                     value="#{beanDButil.getMedications()}"
+                     var="med" class="w3-table-all">
+          <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{med.name}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Dosage</f:facet>
+            #{med.dosage}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Unit</f:facet>
+            #{med.doseUnit}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Issued</f:facet>
+            #{med.issueDate}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Expires</f:facet>
+            #{med.expDate}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Patient</f:facet>
+            #{med.patient}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Provider</f:facet>
+            #{med.provider}
+          </h:column>
+        </h:dataTable>
+      </div>
     </div>
 
   </div>
