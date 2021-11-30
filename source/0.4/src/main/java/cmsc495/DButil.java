@@ -398,7 +398,7 @@ public class DButil {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("INSERT INTO Medication VALUES (?,?,?,?,?,?,?)",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,name);
-      stmt.setString(2,dosage);
+      stmt.setDouble(2,dosage);
       stmt.setString(3,doseUnit);
       stmt.setString(4,issueDate);
       stmt.setString(5,expDate);
