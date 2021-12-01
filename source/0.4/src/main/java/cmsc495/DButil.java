@@ -204,7 +204,8 @@ public class DButil {
       stmt.setString(1,user);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
