@@ -28,6 +28,7 @@
 
     <div id="middle" class="w3-container w3-cell w3-cell-middle w3-mobile">
       <div class="w3-container w3-card w3-padding-16">
+        <h:form>
         <h:dataTable id="testPatientTable"
                      value="#{beanDButil.getPatients()}"
                      var="pt" class="w3-table-all">
@@ -67,7 +68,11 @@
             <f:facet name="header">Address</f:facet>
             #{pt.address}
           </h:column>
+          <h:column>
+            <h:commandButton value="-" action="#{beanDButil.delPatient(pt.username)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+          </h:column>
         </h:dataTable>
+        </h:form>
         <h:form class="w3-container">
           <h:dataTable value="#{beanPatient}" var="patient" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>
@@ -118,6 +123,7 @@
         </h:form>
       </div>
       <div class="w3-container w3-card w3-padding-16">
+        <h:form>
         <h:dataTable id="testProviderTable"
                      value="#{beanDButil.getProviders()}"
                      var="pr" class="w3-table-all">
@@ -165,7 +171,11 @@
             <f:facet name="header">Address</f:facet>
             #{pr.address}
           </h:column>
+          <h:column>
+            <h:commandButton value="-" action="#{beanDButil.delProvider(pr.username)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+          </h:column>
         </h:dataTable>
+        </h:form>
         <h:form class="w3-container">
           <h:dataTable value="#{beanDButil}" var="patient" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>
@@ -252,7 +262,7 @@
             #{med.provider}
           </h:column>
           <h:column>
-            <h:commandButton value="DEL" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red"></h:commandButton>
+            <h:commandButton value="-" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
           </h:column>
         </h:dataTable>
         </h:form>
@@ -284,7 +294,7 @@
               <h:inputText id="medProvider" value="#{beanDButil.provider}" required="true" class="w3-input w3-border" />
             </h:column>
             <h:column>
-              <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-teal"></h:commandButton>
+              <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-green w3-round-xlarge"></h:commandButton>
               <button type="reset" class="w3-button w3-teal">RESET</button>
             </h:column>
           </h:dataTable>
