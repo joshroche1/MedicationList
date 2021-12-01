@@ -89,8 +89,8 @@ public class DButil {
       String pass = "cmsc495";
       c = DriverManager.getConnection(url, user, pass);
     } catch (Exception e) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, e.getMessage(), "..."));
     }
     return c;
   }
@@ -107,8 +107,8 @@ public class DButil {
       stmt.close();
       c.close();
     } catch (SQLException e) {
-      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-      System.exit(0);
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, e.getMessage(), "..."));
     }
     return rs;
   }
@@ -118,7 +118,8 @@ public class DButil {
       Statement stmt = c.createStatement();
       rs = stmt.executeQuery(text);
     } catch (SQLException e) {
-      e.printStackTrace();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, e.getMessage(), "..."));
     }
     return rs;  
   }
@@ -134,7 +135,8 @@ public class DButil {
 	  try {
 		  c.close();
 	  } catch (SQLException e) {
-		  e.printStackTrace();
+		  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, e.getMessage(), "..."));
 	  }
   }
   // For Patient user login
@@ -166,7 +168,8 @@ public class DButil {
       c.close();
       if (rs != null) { return true; }
     } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return false;
   }
@@ -178,7 +181,8 @@ public class DButil {
       PreparedStatement stmt = c.prepareStatement("SELECT name, dosage, doseUnit, issueDate, expDate, patient, provider FROM Medication",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
@@ -191,7 +195,8 @@ public class DButil {
       stmt.setString(1, user);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
@@ -217,7 +222,8 @@ public class DButil {
       PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address, provider FROM Patient",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
@@ -230,7 +236,8 @@ public class DButil {
       stmt.setString(1, user);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
@@ -242,7 +249,8 @@ public class DButil {
       PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, token, phone, address FROM Provider",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
@@ -253,10 +261,9 @@ public class DButil {
       PreparedStatement stmt = c.prepareStatement("SELECT firstName, middleInitial, lastName, sex, email, address, phone, token FROM Provider WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1, user);
       rs = stmt.executeQuery();
-      stmt.close();
-      c.close();
     } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
     return rs;
   }
