@@ -284,7 +284,7 @@ public class DButil {
 	public String updatePatientProvider() {
 		try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=?,firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=? AND firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,provider);
       stmt.setString(2,firstName);
       stmt.setString(3,middleInitial);
@@ -323,7 +323,7 @@ public class DButil {
   public String updateMedication() {
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("UPDATE Medication SET dosage=?,doseUnit=?,expDate=? WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("UPDATE Medication SET dosage=?,doseUnit=?,expDate=? WHERE name=? AND patient=? AND provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setDouble(1,dosage);
       stmt.setString(2,doseUnit);
       stmt.setString(3,expDate);
@@ -453,7 +453,7 @@ public class DButil {
 		}
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=? AND patient=? AND provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,name);
       stmt.setString(2,patient);
       stmt.setString(3,provider);
@@ -474,7 +474,7 @@ public class DButil {
 		}
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=? AND patient=? AND provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,nam);
       stmt.setString(2,patien);
       stmt.setString(3,provide);
