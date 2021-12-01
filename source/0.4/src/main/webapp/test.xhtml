@@ -255,7 +255,7 @@
             <h:commandButton value="DEL" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red"></h:commandButton>
           </h:column>
         </h:dataTable>
-        </f:form>
+        </h:form>
         <h:form class="w3-container">
           <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
