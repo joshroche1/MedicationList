@@ -259,64 +259,84 @@ public class DButil {
     }
     return rs;
   }
-  
-  public boolean updatePatient(String user, String pass, String first, String mi, String last, String sex, String email, String address, String phone) {  // Update Patient profile
+  // Update Patient profile
+  public String updatePatient() { 
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("UPDATE Provider SET password=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-      stmt.setString(1,pass);
-      stmt.setString(2,first);
-      stmt.setString(3,mi);
-      stmt.setString(4,last);
+      PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET password=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1,password);
+      stmt.setString(2,firstName);
+      stmt.setString(3,middleInitial);
+      stmt.setString(4,lastName);
       stmt.setString(5,sex);
       stmt.setString(6,email);
       stmt.setString(7,address);
       stmt.setString(8,phone);
-      stmt.setString(9,user);
-      boolean result = stmt.execute();
-      if (result) { return true; }
+      stmt.setString(9,username);
+      stmt.execute();
     } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return false;
+		resetValues();
+    return "main";
   }
-  public boolean updateProvider(String user, String pass, String tok, String first, String mi, String last, String sex, String email, String address, String phone) {  // Update Provider profile
+	public String updatePatientProvider() {
+		try {
+      c = this.connect();
+      PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=?,firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1,provider);
+      stmt.setString(2,firstName);
+      stmt.setString(3,middleInitial);
+      stmt.execute();
+    } catch (SQLException ex) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+    }
+		resetValues();
+    return "main";
+	}
+	// Update Provider profile
+  public String updateProvider() { 
     try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("UPDATE Provider SET password=?,token=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-      stmt.setString(1,pass);
-      stmt.setString(2,tok);
+      stmt.setString(1,password);
+      stmt.setString(2,token);
       stmt.setString(3,first);
-      stmt.setString(4,mi);
-      stmt.setString(5,last);
+      stmt.setString(4,middleInitial);
+      stmt.setString(5,lastName);
       stmt.setString(6,sex);
       stmt.setString(7,email);
       stmt.setString(8,address);
       stmt.setString(9,phone);
-      stmt.setString(10,user);
-      boolean result = stmt.execute();
-      if (result) { return true; }
+      stmt.setString(10,username);
+      stmt.execute();
     } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return false;
+		resetValues();
+    return "provider-patients";
   }
-  public boolean updateMedication(String name, double dosage, String unit, String exp, String patient, String provider) {  // Access only to Provider
+	// Add Medication to Patient
+  public String updateMedication() {
     try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("UPDATE Medication SET dosage=?,doseUnit=?,expDate=? WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setDouble(1,dosage);
-      stmt.setString(2,unit);
-      stmt.setString(3,exp);
+      stmt.setString(2,doseUnit);
+      stmt.setString(3,expDate);
       stmt.setString(4,name);
       stmt.setString(5,patient);
       stmt.setString(6,provider);
-      boolean result = stmt.execute();
-      if (result) { return true; }
+      stmt.execute();
     } catch (SQLException ex) {
-      System.err.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return false;
+		resetValues();
+    return "provider-patients";
   }
   
   // Adds Patient record
@@ -339,7 +359,8 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return "index";
+		resetValues();
+    return "login";
   }
   // Deletes Patient record from username
   public String delPatient() {
@@ -353,6 +374,7 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
+		resetValues();
     return "index";
   }
   // Adds Provider record
@@ -376,7 +398,8 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return "index";
+		resetValues();
+    return "provider-login";
   }
   // Deletes Provider record from username
   public String delProvider() {
@@ -390,6 +413,7 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
+		resetValues();
     return "index";
   }
   // Adds Medication record
@@ -410,14 +434,15 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return "index";
+		resetValues();
+    return "provider-patients";
   }
   // Deletes Medication record from username
   public String delMedication() {
     try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-      stmt.setString(1,username);
+      stmt.setString(1,name);
       stmt.setString(2,patient);
       stmt.setString(3,provider);
       stmt.execute();
@@ -426,6 +451,27 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
     }
-    return "index";
+		resetValues();
+    return "provider-patients";
   }
+  private void resetValues() {
+		setFirstName("");
+		setMiddleInitial("");
+		setLastName("");
+		setUsername("");
+		setPassword("");
+		setPassword2("");
+		setSex("");
+		setEmail("");
+		setAddress("");
+		setPhone("");
+		setToken("");
+		setName("");
+		setDosage(0);
+		setDoseUnit("");
+		setIssueDate("");
+		setExpDate("");
+		setPatient("");
+		setProvider("");
+	}
 }
