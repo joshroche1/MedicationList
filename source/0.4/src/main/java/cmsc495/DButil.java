@@ -418,6 +418,11 @@ public class DButil {
   }
   // Adds Medication record
   public String addMedication() {
+		if (name.equals("") || dosage <= 0 || doseUnit.equals("") || issueDate.equals("") || expDate.equals("") || patient.equals("") || provider.equals("")) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, "Must have name, dosage, unit, issue date, exp date, patient, and provider to add Medication", "..."));
+			return "";
+		}
     try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("INSERT INTO Medication VALUES (?,?,?,?,?,?,?)",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
@@ -439,6 +444,11 @@ public class DButil {
   }
   // Deletes Medication record from username
   public String delMedication() {
+		if (name.equals("") || patient.equals("") || provider.equals("") ) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_WARN, "Must have name, patient, and provider to delete Medication", "..."));
+			return "";
+		}
     try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
