@@ -61,51 +61,6 @@ public class Patient {
   public String getAddress() { return this.address; }
   public String getPhone() { return this.phone; }
 
-  public String register() {
-    boolean result = false;
-    DButil dbu = new DButil();
-    result = dbu.registerPatient(username,password,firstName,middleInitial,lastName,sex,email,address,phone);
-    if (result) { 
-      return "index"; 
-    } else {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Cannot register at this time", "..."));
-    }
-    return "login";
-  }
-  
-  public String updateProfile() {
-    String[] strarr = {username,password,firstName,middleInitial,lastName,sex,email,address,phone};
-    for (int i = 0; i < strarr.length; i++) {
-      if (strarr[i] == null) {
-        strarr[i] = "";
-      }
-    }
-    boolean result = false;
-    DButil dbu = new DButil();
-    result = dbu.updatePatient(strarr[1],strarr[2],strarr[3],strarr[4],strarr[5],strarr[6],strarr[7],strarr[8],strarr[9]);
-    if (result) { 
-      return "index"; 
-    } else {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Cannot register at this time", "..."));
-    }
-    return "login";
-  }
-  
-  public String deleteProfile(String user) {
-    boolean result = false;
-    DButil dbu = new DButil();
-    result = dbu.deletePatient(user);
-    if (result) {
-      return "index";
-    } else {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Unable to delete profile", "..."));
-    }
-    return "index";
-  }
-  
   public boolean validatePassword() {
     if (password.equals(password2)) { return true; }
     return false;
