@@ -416,6 +416,20 @@ public class DButil {
 		resetValues();
     return "index";
   }
+	public String delProvider(String nam) {
+    try {
+      c = this.connect();
+      PreparedStatement stmt = c.prepareStatement("DELETE FROM Provider WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1,nam);
+      stmt.execute();
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
+    }
+		resetValues();
+    return "index";
+  }
   // Adds Medication record
   public String addMedication() {
 		if (name.equals("") || dosage <= 0 || doseUnit.equals("") || issueDate.equals("") || expDate.equals("") || patient.equals("") || provider.equals("")) {
