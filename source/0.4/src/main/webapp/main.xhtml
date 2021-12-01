@@ -26,7 +26,7 @@
             <div class="w3-modal-content w3-container w3-card w3-animate-zoom">
               <span onclick="document.getElementById('modalPatientProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
                 <h:form id="user-profile-form" class="w3-container">
-                  <h:dataTable value="#{beanPatient.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
+                  <h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
                     <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
 	                    #{pt.firstName}
                     <h:inputText id="userFirstName"
