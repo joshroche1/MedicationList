@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<div class="w3-content">
+<div class="w3-container">
 
-  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card w3-section">
+  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card">
     <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third"></div>
     <div class="w3-conatiner w3-cell w3-mobile w3-content w3-margin w3-third">
       <h1>myRx</h1>
@@ -24,14 +24,12 @@
     <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third"></div>
   </div>
 
-  <div class="w3-cell-row w3-section">
+  <div class="w3-cell-row">
 
-    <div id="middle" class="w3-container w3-cell w3-cell-middle w3-mobile">
-      <div class="w3-container w3-card w3-padding-16">
+    <div id="middle" class="w3-container w3-mobile">
+      <div class="w3-container w3-card">
         <h:form>
-        <h:dataTable id="testPatientTable"
-                     value="#{beanDButil.getPatients()}"
-                     var="pt" class="w3-table-all">
+        <h:dataTable id="testPatientTable" value="#{beanDButil.getPatients()}" var="pt" class="w3-table-all w3-responsive">
           <h:column>
             <f:facet name="header">Username</f:facet>
             #{pt.username}
@@ -69,12 +67,16 @@
             #{pt.address}
           </h:column>
           <h:column>
+            <f:facet name="header">Provider</f:facet>
+            #{pt.provider}
+          </h:column>
+          <h:column>
             <h:commandButton value="-" action="#{beanDButil.delPatient(pt.username)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
           </h:column>
         </h:dataTable>
         </h:form>
         <h:form class="w3-container">
-          <h:dataTable value="#{beanPatient}" var="patient" class="w3-table-all">
+          <h:dataTable value="#{beanPatient}" var="patient" class="w3-table-all w3-responsive">
             <h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>
               <h:inputText id="userUsername" value="#{beanPatient.username}" class="w3-input w3-border" />
             </h:column>
@@ -122,11 +124,9 @@
           </h:dataTable>
         </h:form>
       </div>
-      <div class="w3-container w3-card w3-padding-16">
+      <div class="w3-container w3-card">
         <h:form>
-        <h:dataTable id="testProviderTable"
-                     value="#{beanDButil.getProviders()}"
-                     var="pr" class="w3-table-all">
+        <h:dataTable id="testProviderTable" value="#{beanDButil.getProviders()}" var="pr" class="w3-table-all w3-responsive">
           <h:column>
             <f:facet name="header">Username</f:facet>
             #{pr.username}
@@ -172,7 +172,7 @@
             #{pr.address}
           </h:column>
           <h:column>
-            <h:commandButton value="-" action="#{beanDButil.delProvider(pr.username)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+            <h:commandButton value="-" action="#{beanDButil.delProvider(pr.username)}" class="w3-button w3-red w3-round-xxlarge"></h:commandButton>
           </h:column>
         </h:dataTable>
         </h:form>
@@ -228,11 +228,9 @@
           </h:dataTable>
         </h:form>
       </div>
-      <div class="w3-container w3-card w3-padding-16">
+      <div class="w3-container w3-card">
         <h:form class="w3-container">
-        <h:dataTable id="testMedicationTable"
-                     value="#{beanDButil.getMedications()}"
-                     var="med" class="w3-table-all">
+        <h:dataTable id="testMedicationTable" value="#{beanDButil.getMedications()}" var="med" class="w3-table-all w3-responsive">
           <h:column>
             <f:facet name="header">Name</f:facet>
             #{med.name}
@@ -320,7 +318,7 @@
 
   </div>
 
-  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card w3-section">
+  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card">
     <a href="index.xhtml"><h2>myRX</h2></a>
   </div>
 
