@@ -200,7 +200,7 @@ public class DButil {
     rs = null;
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address FROM Patient WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address, provider FROM Patient WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,user);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
@@ -214,7 +214,7 @@ public class DButil {
     rs = null;
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address FROM Patient",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address, provider FROM Patient",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
