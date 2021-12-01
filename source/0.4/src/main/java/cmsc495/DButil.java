@@ -276,7 +276,7 @@ public class DButil {
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "main";
@@ -291,7 +291,7 @@ public class DButil {
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "main";
@@ -314,7 +314,7 @@ public class DButil {
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "provider-patients";
@@ -333,7 +333,7 @@ public class DButil {
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "provider-patients";
@@ -357,7 +357,7 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "login";
@@ -372,7 +372,7 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "index";
@@ -396,7 +396,7 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "provider-login";
@@ -411,7 +411,7 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "index";
@@ -422,7 +422,7 @@ public class DButil {
 			String msg = "Must have name, dosage, unit, issue date, exp date, patient, and provider to add Medication\n";
 			msg += (name + " " + dosage + " " +  doseUnit + " " +  issueDate + " " +  expDate + " " +  patient + " " +  provider);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, msg, "..."));
+                   FacesMessage.SEVERITY_INFO, msg, "..."));
 			return "";
 		}
     try {
@@ -439,7 +439,7 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "provider-patients";
@@ -448,7 +448,7 @@ public class DButil {
   public String delMedication() {
 		if (name.equals("") || patient.equals("") || provider.equals("") ) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Must have name, patient, and provider to delete Medication", "..."));
+                   FacesMessage.SEVERITY_INFO, "Must have name, patient, and provider to delete Medication", "..."));
 			return "";
 		}
     try {
@@ -461,7 +461,28 @@ public class DButil {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, ex.getMessage(), "..."));
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
+    }
+		resetValues();
+    return "provider-patients";
+  }
+	public String delMedication(String nam, String patien, String provide) {
+		if (nam.equals("") || patien.equals("") || provide.equals("") ) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, "Must have name, patient, and provider to delete Medication", "..."));
+			return "";
+		}
+    try {
+      c = this.connect();
+      PreparedStatement stmt = c.prepareStatement("DELETE FROM Medication WHERE name=?,patient=?,provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1,nam);
+      stmt.setString(2,patien);
+      stmt.setString(3,provide);
+      stmt.execute();
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
     return "provider-patients";
