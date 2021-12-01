@@ -14,7 +14,7 @@
 <body>
 
 <div>
-  <div id="body" class="w3-container w3-mobile w3-auto">
+  <div id="body" class="w3-container w3-mobile">
   
     <div id="top" class="w3-bar w3-teal w3-card">
     
@@ -27,7 +27,7 @@
               <span onclick="document.getElementById('modalPatientProfile').style.display='none'" class="w3-button w3-red w3-display-topright">&times;</span>
               <h:form id="user-profile-form" class="w3-container">
         			<h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="pt" class="w3-table-all w3-responsive">
-					    	<h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>#{pt.username}</h:column>
+					    	<h:column><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet><h3>#{pt.username}</h3></h:column>
 								<h:column><f:facet name="header"><label class="w3-text-blue">Email</label></f:facet>#{pt.email}</h:column>
 						  	<h:column><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>#{pt.firstName}</h:column>
 								<h:column><f:facet name="header"><label class="w3-text-blue">MI</label></f:facet>#{pt.middleInitial}</h:column>
@@ -77,9 +77,8 @@
     </div>
     
     <div id="middle" class="w3-container w3-mobile w3-card">
-      <h:message id="errormessage" for="patientMedTable" />
 
-      <h:dataTable id="patientMedTable" value="#{beanDButil.getMedications(beanPatient.username)}" var="med" class="w3-table-all">
+      <h:dataTable id="patientMedTable" value="#{beanDButil.getMedications(beanPatient.username)}" var="med" class="w3-table-all w3-responsive">
         <h:column>
           <f:facet name="header">Medication</f:facet>
           #{med.name}
