@@ -122,45 +122,45 @@
           <button onclick="document.getElementById('modalPatientMeds').style.display='none'" class="w3-button w3-red w3-display-topright">X</button>
 					<div class="w3-container"><h2>#{beanDButil.patient}</h2></div>
 					<h:dataTable value="#{beanDButil.getMedications(beanDButil.patient)}" var="med" class="w3-table-all w3-responsive">
-						<h:column><h:facet name="header">
-							<label class="w3-blue">Name</label></h:facet>
+						<h:column><f:facet name="header">
+							<label class="w3-blue">Name</label></f:facet>
 							#{med.name}
 						</h:column>
-						<h:column><h:facet name="header">
-							<label class="w3-blue">Dosage</label></h:facet>
+						<h:column><f:facet name="header">
+							<label class="w3-blue">Dosage</label></f:facet>
 							#{med.dosage}
 						</h:column>
-						<h:column><h:facet name="header">
-							<label class="w3-blue">Unit</label></h:facet>
+						<h:column><f:facet name="header">
+							<label class="w3-blue">Unit</label></f:facet>
 							#{med.doseUnit}
 						</h:column>
-						<h:column><h:facet name="header">
-							<label class="w3-blue">Issued</label></h:facet>
+						<h:column><f:facet name="header">
+							<label class="w3-blue">Issued</label></f:facet>
 							#{med.issueDate}
 						</h:column>
-						<h:column><h:facet name="header">
-							<label class="w3-blue">Expires</label></h:facet>
+						<h:column><f:facet name="header">
+							<label class="w3-blue">Expires</label></f:facet>
 							#{med.expDate}
 						</h:column>
 					</h:dataTable>
           <h:form id="add-med-form" class="w3-container">
-					  <h:column><h:facet name="header"><label class="w3-text-blue">Name</label></h:facet>
+					  <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
               <h:inputText id="medName" value="#{beanDButil.name}" class="w3-input w3-border"></h:inputText>
 						</h:column>
-						<h:column><h:facet name="header"><label class="w3-text-blue">Dosage</label></h:facet>
+						<h:column><f:facet name="header"><label class="w3-text-blue">Dosage</label></f:facet>
               <h:inputText id="medDosage" value="#{beanDButil.dosage}" class="w3-input w3-border"></h:inputText>
 						</h:column>
-						<h:column><h:facet name="header"><label class="w3-text-blue">Unit</label></h:facet>
+						<h:column><f:facet name="header"><label class="w3-text-blue">Unit</label></f:facet>
               <h:selectOneMenu id="medDoseUnit" value="#{beanDButil.doseUnit}" class="w3-input w3-border">
 								<f:selectItem itemValue="g" itemLabel="gram" />
 								<f:selectItem itemValue="mg" itemLabel="milligram" />
 								<f:selectItem itemValue="mcg" itemLabel="microgram" />
 							</h:selectOneMenu>
 						</h:column>
-						<h:column><h:facet name="header"><label class="w3-text-blue">Issued</label></h:facet>
+						<h:column><f:facet name="header"><label class="w3-text-blue">Issued</label></f:facet>
               <h:inputText id="medIssueDate" value="#{beanDButil.issueDate}" class="w3-input w3-border"></h:inputText>
 						</h:column>
-						<h:column><h:facet name="header"><label class="w3-text-blue">Expires</label></h:facet>
+						<h:column><f:facet name="header"><label class="w3-text-blue">Expires</label></f:facet>
               <h:inputText id="medExpDate" value="#{beanDButil.expDate}" class="w3-input w3-border"></h:inputText>
 						</h:column>
 						<h:column><h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-teal"></h:commandButton>
