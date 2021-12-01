@@ -122,6 +122,18 @@
                      value="#{beanDButil.getProviders()}"
                      var="pr" class="w3-table-all">
           <h:column>
+            <f:facet name="header">Username</f:facet>
+            #{pr.username}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Password</f:facet>
+            #{pr.password}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Token</f:facet>
+            #{pr.token}
+          </h:column>
+          <h:column>
             <f:facet name="header">First</f:facet>
             #{pr.firstName}
           </h:column>
@@ -161,6 +173,9 @@
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Password</label></f:facet>
               <h:inputSecret id="providerPassword" value="#{beanDButil.password}" class="w3-input w3-border" />
+            </h:column>
+            <h:column><f:facet name="header"><label class="w3-text-blue">Token</label></f:facet>
+              <h:inputSecret id="providerToken" value="#{beanDButil.token}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
               <h:inputText id="providerFirstName" value="#{beanDButil.firstName}" class="w3-input w3-border" />
@@ -237,7 +252,7 @@
           </h:column>
         </h:dataTable>
         <h:form class="w3-container">
-          <h:dataTable value="#{beanDButil}" var="patient" class="w3-table-all">
+          <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
               <h:inputText id="medName" value="#{beanDButil.name}" class="w3-input w3-border" />
             </h:column>
