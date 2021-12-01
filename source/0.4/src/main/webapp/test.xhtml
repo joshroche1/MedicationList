@@ -108,7 +108,7 @@
               <h:inputText id="userPhone" value="#{beanPatient.phone}" class="w3-input w3-border" />
             </h:column>
             <h:column>
-              <h:commandButton value="ADD" action="#{beanPatient.register()}" class="w3-button w3-teal"></h:commandButton>
+              <h:commandButton value="ADD" action="#{beanDButil.addPatient()}" class="w3-button w3-teal"></h:commandButton>
               <button type="reset" class="w3-button w3-teal">RESET</button>
             </h:column>
           </h:dataTable>
@@ -214,13 +214,13 @@
               <h:inputText id="providerPhone" value="#{beanDButil.phone}" class="w3-input w3-border" />
             </h:column>
             <h:column>
-              <h:commandButton value="ADD" action="#{beanDButil.registerProvider()}" class="w3-button w3-teal"></h:commandButton>
+              <h:commandButton value="ADD" action="#{beanDButil.addProvider()}" class="w3-button w3-teal"></h:commandButton>
               <button type="reset" class="w3-button w3-teal">RESET</button>
             </h:column>
           </h:dataTable>
           <h:dataTable value="#{beanDButil}" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Username to Delete</label></f:facet>
-              <h:inputText id="userPhone" value="#{beanDButil.username}" class="w3-input w3-border" />
+              <h:inputText value="#{beanDButil.username}" class="w3-input w3-border" />
             </h:column>
             <h:column>
               <h:commandButton value="DEL" action="#{beanDButil.delProvider()}" class="w3-button w3-red"></h:commandButton>
