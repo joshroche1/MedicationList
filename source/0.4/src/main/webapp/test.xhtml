@@ -219,6 +219,7 @@
         </h:form>
       </div>
       <div class="w3-container w3-card w3-padding-16">
+        <h:form class="w3-container">
         <h:dataTable id="testMedicationTable"
                      value="#{beanDButil.getMedications()}"
                      var="med" class="w3-table-all">
@@ -250,7 +251,11 @@
             <f:facet name="header">Provider</f:facet>
             #{med.provider}
           </h:column>
+          <h:column>
+            <h:commandButton value="DEL" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red"></h:commandButton>
+          </h:column>
         </h:dataTable>
+        </f:form>
         <h:form class="w3-container">
           <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
@@ -283,15 +288,17 @@
               <button type="reset" class="w3-button w3-teal">RESET</button>
             </h:column>
           </h:dataTable>
+        </h:form>
+        <h:form>
           <h:dataTable value="#{beanDButil}" class="w3-table-all">
             <h:column><f:facet name="header"><label class="w3-text-blue">Med Name</label></f:facet>
-              <h:inputText id="medDelName" value="#" class="w3-input w3-border" />
+              <h:inputText id="medDelName" value="#{beanDButil.name}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
-              <h:inputText id="medDelPatient" value="#" class="w3-input w3-border" />
+              <h:inputText id="medDelPatient" value="#{beanDButil.patient}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
-              <h:inputText id="medDelProvider" value="#" class="w3-input w3-border" />
+              <h:inputText id="medDelProvider" value="#{beanDButil.provider}" class="w3-input w3-border" />
             </h:column>
             <h:column>
               <h:commandButton value="DEL" action="#{beanDButil.delMedication()}" class="w3-button w3-red"></h:commandButton>
