@@ -62,7 +62,7 @@
                        value="#{beanDButil.email}"
                        required="true"
 											 class="w3-input w3-border" /></h:column></h:dataTable>
-										<h:dataTable value="#{beanPatient.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
+										<h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
    					       <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Physical Address</label></f:facet>
 	      				    #{pt.address} 
         					  <h:inputText id="userAddress"
