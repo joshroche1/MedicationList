@@ -260,7 +260,11 @@
               <h:inputSecret id="medDosage" value="#{beanDButil.dosage}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Unit</label></f:facet>
-              <h:inputText id="medUnit" value="#{beanDButil.doseUnit}" class="w3-input w3-border" />
+              <h:selectOneMenu value="#{beanDButil.doseUnit}" class="w3-select">
+                <f:selectItem itemValue="g" itemLabel="grams" />
+                <f:selectItem itemValue="mg" itemLabel="milligrams" />
+                <f:selectItem itemValue="ug" itemLabel="micrograms" />
+              </h:selectOneMenu>
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Issued</label></f:facet>
               <h:inputText id="medIssued" value="#{beanDButil.issueDate}" class="w3-input w3-border" />
@@ -272,7 +276,7 @@
               <h:inputText id="medPatient" value="#{beanDButil.patient}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
-              <h:inputTextarea id="medProvider" value="#{beanDButil.provider}" class="w3-input w3-border" />
+              <h:inputText id="medProvider" value="#{beanDButil.provider}" class="w3-input w3-border" />
             </h:column>
             <h:column>
               <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-teal"></h:commandButton>
