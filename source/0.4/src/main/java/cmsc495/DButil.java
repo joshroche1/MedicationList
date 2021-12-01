@@ -419,8 +419,10 @@ public class DButil {
   // Adds Medication record
   public String addMedication() {
 		if (name.equals("") || dosage <= 0 || doseUnit.equals("") || issueDate.equals("") || expDate.equals("") || patient.equals("") || provider.equals("")) {
+			String msg = "Must have name, dosage, unit, issue date, exp date, patient, and provider to add Medication\n";
+			msg += (name + " " + dosage + " " +  doseUnit + " " +  issueDate + " " +  expDate + " " +  patient + " " +  provider);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Must have name, dosage, unit, issue date, exp date, patient, and provider to add Medication", "..."));
+                   FacesMessage.SEVERITY_WARN, msg, "..."));
 			return "";
 		}
     try {
