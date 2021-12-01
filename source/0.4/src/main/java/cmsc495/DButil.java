@@ -303,7 +303,7 @@ public class DButil {
       PreparedStatement stmt = c.prepareStatement("UPDATE Provider SET password=?,token=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,password);
       stmt.setString(2,token);
-      stmt.setString(3,first);
+      stmt.setString(3,firstName);
       stmt.setString(4,middleInitial);
       stmt.setString(5,lastName);
       stmt.setString(6,sex);
