@@ -110,12 +110,15 @@
         </h:column>
         <h:column>
           <f:facet name="header">Phone</f:facet>
-          #{patient.phone}
+					<h:outputLink value="tel:#{patient.phone}">${patient.phone}</h:outputLink>
         </h:column>
         <h:column>
           <f:facet name="header">Medications</f:facet>
           <h:commandButton action="#{beanDButil.setPatient(patient.username)}" label="VIEW" onclick="document.getElementById('modalPatientMeds').style.display='block'" class="w3-button w3-green" />
         </h:column>
+				<h:column><h:outputLink value="provider-patient-meds.xhtml">
+					<h:commandButton action="#{beanDButil.patient=patient.username}" label="View" type="button" class="w3-button w3-blue w3-round-xxlarge" /></h:outputLink>
+				</h:column>
       </h:dataTable>
 			<div id="modalPatientMeds" class="w3-modal">
         <div class="w3-modal-content w3-card w3-animate-zoom">
