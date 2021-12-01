@@ -377,6 +377,20 @@ public class DButil {
 		resetValues();
     return "index";
   }
+	public String delPatient(String nam) {
+    try {
+      c = this.connect();
+      PreparedStatement stmt = c.prepareStatement("DELETE FROM Patient WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1,nam);
+      stmt.execute();
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
+    }
+		resetValues();
+    return "index";
+  }
   // Adds Provider record
   public String addProvider() {
     try {
