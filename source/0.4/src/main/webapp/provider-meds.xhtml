@@ -27,15 +27,15 @@
               <span onclick="document.getElementById('modalProviderProfile').style.display='none'" class="w3-button w3-red w3-display-topright">&times;</span>
               <h:form id="user-profile-form" class="w3-container">
         			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="pt" class="w3-table-all w3-responsive">
-					    	<h:column><f:facet name="header"><label class="w3-blue">Username</label></f:facet><h3>#{pt.username}</h3></h:column>
-								<h:column><f:facet name="header"><label class="w3-blue">Email</label></f:facet>#{pt.email}</h:column>
-						  	<h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>#{pt.firstName}</h:column>
-								<h:column><f:facet name="header"><label class="w3-blue">MI</label></f:facet>#{pt.middleInitial}</h:column>
-								<h:column><f:facet name="header"><label class="w3-blue">Last Name</label></f:facet>#{pt.lastName}</h:column>
+					    	<h:column><f:facet name="header">Username</f:facet>#{pt.username}</h:column>
+								<h:column><f:facet name="header">Email<f:facet>#{pt.email}</h:column>
+						  	<h:column><f:facet name="header">First Name</f:facet>#{pt.firstName}</h:column>
+								<h:column><f:facet name="header">MI</f:facet>#{pt.middleInitial}</h:column>
+								<h:column><f:facet name="header">Last Name</f:facet>#{pt.lastName}</h:column>
 							</h:dataTable><h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="pt" class="w3-table-all">
-								<h:column><f:facet name="header"><label class="w3-blue">Sex</label></f:facet>#{pt.sex}</h:column>
-								<h:column><f:facet name="header"><label class="w3-blue">Phone</label></f:facet>#{pt.phone}</h:column>
-								<h:column><f:facet name="header"><label class="w3-blue">Address</label></f:facet>#{pt.address}</h:column>
+								<h:column><f:facet name="header">Sex</f:facet>#{pt.sex}</h:column>
+								<h:column><f:facet name="header">Phone</f:facet>#{pt.phone}</h:column>
+								<h:column><f:facet name="header">Address</f:facet>#{pt.address}</h:column>
 							</h:dataTable><h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="pt" class="w3-table-all w3-responsive">
 								<h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>
 									<h:inputText value="#{beanProvider.firstName}" required="true" class="w3-input w3-border" /></h:column>
@@ -80,7 +80,8 @@
     </div>
     
     <div id="middle" class="w3-container w3-mobile w3-card">
-
+			
+			<div class="w3-container w3-card">
       <h:dataTable id="providerMedTable" value="#{beanDButil.getMedications(beanProvider.username,1)}" var="med" class="w3-table-all w3-responsive">
         <h:column>
           <f:facet name="header">Patient</f:facet>
@@ -111,7 +112,10 @@
           #{med.provider}
         </h:column>
       </h:dataTable>
-			<h:form class="w3-container">
+			</div>
+			<div class="w3-container w3-card">
+			<h:form>
+				<h2>Add Medication to Patient</h2>
         <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all w3-responsive">
           <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
             <h:inputText id="medName" value="#{beanDButil.name}" required="true" class="w3-input w3-border" />
@@ -144,7 +148,10 @@
           </h:column>
         </h:dataTable>
       </h:form>
+			</div>
+			<div class="w3-container w3-card">
 			<h:form>
+				<h2>Remove Medication from Patient</h2>
         <h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
           <h:column><f:facet name="header"><label class="w3-text-blue">Med Name</label></f:facet>
             <h:inputText id="medDelName" value="#{beanDButil.name}" class="w3-input w3-border" />
@@ -160,10 +167,10 @@
           </h:column>
         </h:dataTable>
       </h:form>
-		</div>
-		<div>
-			<div class="w3-container w3-mobile w3-card">
+			</div>
+			<div class="w3-container w3-card">
 			<h:form>
+				<h2>Add Patient</h2>
 				<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
 					<h:column>
 						<f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
@@ -183,7 +190,8 @@
 				</h:dataTable>
 			</h:form>
 			</div>
-			<div class="w3-container w3-mobile w3-card">
+			<div class="w3-container w3-card">
+				<h2>Remove Patient</h2>
 			<h:form>
 				<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
 					<h:column>
