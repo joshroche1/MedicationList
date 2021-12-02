@@ -206,6 +206,33 @@ public class DButil {
     }
     return rs;
   }
+	// Get Medication records associated with Patient username and Provider username
+  public String getMedications(String pt, String pr) {
+    rs = null;
+    try {
+      c = this.connect();
+      PreparedStatement stmt = c.prepareStatement("SELECT name, dosage, doseUnit, issueDate, expDate FROM Medication WHERE patient=? AND provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1, pt);
+			stmt.setString(1, pr);
+      rs = stmt.executeQuery();
+    } catch (SQLException ex) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
+    }
+		int i = 0;
+		String temp = "<table class=&quot;w3-table-all w3-responsive&quot;><tr><th>Name</th><th>Dosage</th><th>Unit</th><th>Issued</th><th>Expires</th></tr>";
+		while (rs.next()) {
+			temp += "<tr><td>";
+			while (i < 5) {
+				temp += "" + rs.next().toString();
+				temp += "</td><td>";
+				i++;
+			}
+			temp += "</td></tr>";
+		}
+		temp += "</table>";
+    return temp;
+  }
   // Get Patient record by username
   public ResultSet getPatient(String user) {
     rs = null;
