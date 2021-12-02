@@ -61,9 +61,11 @@
 								<h:column><f:facet name="header"><label class="w3-text-blue">Password</label></f:facet>
 									<h:inputSecret value="#{beanDButil.password}" required="true" class="w3-input w3-border" />
 									<h:inputSecret value="#{beanDButil.password2}" required="true" class="w3-input w3-border" /></h:column>
-								<h:commandButton value="UPDATE PROFILE" action="#{beanDButil.updateProvider()}" class="w3-button w3-teal w3-round-xxlarge" />
-								<button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
-								<button onclick="document.getElementById('modalProviderProfile').style.display='none'" class="w3-button w3-green w3-round-xxlarge">CLOSE</button>
+								<h:column>
+									<h:commandButton value="UPDATE PROFILE" action="#{beanDButil.updateProvider()}" class="w3-button w3-teal w3-round-xxlarge" />
+									<button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
+									<button onclick="document.getElementById('modalProviderProfile').style.display='none'" class="w3-button w3-green w3-round-xxlarge">CLOSE</button>
+								</h:column>
 								</h:dataTable>
 							</h:form>
            	</div>
@@ -104,7 +106,7 @@
         </h:column>
         <h:column>
           <f:facet name="header">Medications</f:facet>
-          <h:commandButton action="#{beanDButil.viewPatientMeds(patient.username)}" label="VIEW" class="w3-button w3-green" />
+          <h:commandButton action="#{beanDButil.viewPatientMeds(patient.username)}" value="VIEW" class="w3-button w3-green"></h:commandButton>
         </h:column>
       </h:dataTable>
 		</div>
