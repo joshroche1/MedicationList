@@ -91,26 +91,6 @@
           <f:facet name="header">Phone</f:facet><h:outputLink value="tel:#{patient.phone}">${patient.phone}</h:outputLink>
         </h:column>
         <h:column>
-					<h:dataTable value="#{beanDButil.getMedications(patient.username)}" var="med" class="w3-table-all w3-responsive">
-						</h:column>
-							<f:facet name="header"><label class="w3-blue">Name</label></f:facet>#{med.name}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><label class="w3-blue">Dosage</label></f:facet>#{med.dosage}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><label class="w3-blue">Unit</label></f:facet>#{med.doseUnit}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><label class="w3-blue">Issued</label></f:facet>#{med.issueDate}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><label class="w3-blue">Expires</label></f:facet>#{med.expDate}
-						</h:column>
-					</h:dataTable>
-				</h:column>
-			</h:dataTable>
-        <h:column>
           <f:facet name="header">Medications</f:facet>
           <h:commandButton action="#{beanDButil.setPatient(patient.username)}" label="VIEW" onclick="document.getElementById('modalPatientMeds').style.display='block'" class="w3-button w3-green" />
         </h:column>
