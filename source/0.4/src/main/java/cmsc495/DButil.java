@@ -219,15 +219,18 @@ public class DButil {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
-		int i = 0;
 		String temp = "<table class=&quot;w3-table-all w3-responsive&quot;><tr><th>Name</th><th>Dosage</th><th>Unit</th><th>Issued</th><th>Expires</th></tr>";
 		while (rs.next()) {
 			temp += "<tr><td>";
-			while (i < 5) {
-				temp += "" + rs.next().toString();
-				temp += "</td><td>";
-				i++;
-			}
+			temp += "" + rs.getString("name");
+			temp += "</td><td>";
+			temp += "" + rs.getDouble("dosage");
+			temp += "</td><td>";
+			temp += "" + rs.getString("doseUnit");
+			temp += "</td><td>";
+			temp += "" + rs.getString("issueDate");
+			temp += "</td><td>";
+			temp += "" + rs.getString("expDate");
 			temp += "</td></tr>";
 		}
 		temp += "</table>";
