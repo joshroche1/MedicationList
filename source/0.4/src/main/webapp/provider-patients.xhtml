@@ -104,8 +104,7 @@
           <f:facet name="header">Phone</f:facet><h:outputLink value="tel:#{patient.phone}">${patient.phone}</h:outputLink>
         </h:column>
         <h:column>
-          <f:facet name="header">Medications</f:facet>
-          <h:commandButton action="#{beanDButil.viewPatientMeds()}" value="VIEW" class="w3-button w3-green"></h:commandButton>
+          #{beanDButil.getMedications(patient.username,beanProvider.username)}
         </h:column>
 				<h:column>
 					<a href="provider-patient.meds.xhtml">
