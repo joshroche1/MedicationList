@@ -111,6 +111,40 @@
           #{med.provider}
         </h:column>
       </h:dataTable>
+			<h:form class="w3-container">
+        <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all">
+          <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
+            <h:inputText id="medName" value="#{beanDButil.name}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Dosage</label></f:facet>
+            <h:inputText id="medDosage" value="#{beanDButil.dosage}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Unit</label></f:facet>
+            <h:selectOneMenu value="#{beanDButil.doseUnit}" required="true" class="w3-select">
+              <f:selectItem itemValue="g" itemLabel="grams" />
+              <f:selectItem itemValue="mg" itemLabel="milligrams" />
+              <f:selectItem itemValue="ug" itemLabel="micrograms" />
+            </h:selectOneMenu>
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Issued</label></f:facet>
+            <h:inputText id="medIssued" value="#{beanDButil.issueDate}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Expires</label></f:facet>
+            <h:inputText id="medExp" value="#{beanDButil.expDate}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
+            <h:inputText id="medPatient" value="#{beanDButil.patient}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
+            <h:inputText id="medProvider" value="#{beanDButil.provider}" required="true" class="w3-input w3-border" />
+          </h:column>
+          <h:column>
+            <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-green w3-round-xlarge"></h:commandButton>
+            <button type="reset" class="w3-button w3-teal">RESET</button>
+          </h:column>
+        </h:dataTable>
+      </h:form>
+		</div>
 
     <div id="bottom" class="w3-container w3-mobile w3-card w3-teal">
       <div class="w3-container w3-bar w3-mobile w3-row w3-padding">
@@ -126,7 +160,6 @@
     </div>
 
   </div>
-</div>
 </div>
 
 </body>
