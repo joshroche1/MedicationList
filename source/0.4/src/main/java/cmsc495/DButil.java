@@ -314,15 +314,15 @@ public class DButil {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=? AND firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,provider);
-      stmt.setString(2,firstName);
-      stmt.setString(3,middleInitial);
+      stmt.setString(2,lastName);
+      stmt.setString(3,firstName);
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "main";
+    return "provider-meds";
 	}
 	// Update Provider profile
   public String updateProvider() { 
