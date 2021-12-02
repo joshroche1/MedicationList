@@ -115,10 +115,10 @@ public class Provider {
     if (valid) {
       HttpSession sess = SessionUtils.getSession();
       sess.setAttribute("username", username);
-      return "provider-patients";
+      return "provider-meds";
     } else {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                   FacesMessage.SEVERITY_WARN, "Incorrect username, password, and/or token", "..."));
+                   FacesMessage.SEVERITY_INFO, "Incorrect username, password, and/or token", "..."));
       return "provider-login";
     }
   }
