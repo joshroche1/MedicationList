@@ -206,35 +206,19 @@ public class DButil {
     }
     return rs;
   }
-	// Get Medication records associated with Patient username and Provider username
-  public String getMedications(String pt, String pr) {
+	// Get Medication records associated with Provider username
+  public ResultSet getMedications(String user, Integer x) {
     rs = null;
-		String temp = "<table class=&quot;w3-table-all w3-responsive&quot;><tr><th>Name</th><th>Dosage</th><th>Unit</th><th>Issued</th><th>Expires</th></tr>";
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT name, dosage, doseUnit, issueDate, expDate FROM Medication WHERE patient=? AND provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-      stmt.setString(1, pt);
-			stmt.setString(1, pr);
+      PreparedStatement stmt = c.prepareStatement("SELECT name, dosage, doseUnit, issueDate, expDate, patient, provider FROM Medication WHERE provider=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      stmt.setString(1, user);
       rs = stmt.executeQuery();
-			while (rs.next()) {
-				temp += "<tr><td>";
-				temp += "" + rs.getString("name");
-				temp += "</td><td>";
-				temp += "" + rs.getDouble("dosage");
-				temp += "</td><td>";
-				temp += "" + rs.getString("doseUnit");
-				temp += "</td><td>";
-				temp += "" + rs.getString("issueDate");
-				temp += "</td><td>";
-				temp += "" + rs.getString("expDate");
-				temp += "</td></tr>";
-			}
-		temp += "</table>";
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
-    return temp;
+    return rs;
   }
   // Get Patient record by username
   public ResultSet getPatient(String user) {
