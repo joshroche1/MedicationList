@@ -173,6 +173,12 @@ public class DButil {
     }
     return false;
   }
+	// Provider view of Patient medications
+	public String viewPatientMeds(String user) {
+  	setPatient(user);
+  	setProvider(provider);
+  	return "provider-patient-meds";
+	}
   // Get all Medication table records
   public ResultSet getMedications() {
     rs = null;
