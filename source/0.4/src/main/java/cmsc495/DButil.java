@@ -345,7 +345,7 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "provider-patients";
+    return "provider-meds";
   }
 	// Add Medication to Patient
   public String updateMedication() {
@@ -364,7 +364,7 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "provider-patients";
+    return "provider-meds";
   }
   
   // Adds Patient record
@@ -498,7 +498,7 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "provider-patients";
+    return "provider-meds";
   }
   // Deletes Medication record from username
   public String delMedication() {
@@ -520,13 +520,13 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "provider-patients";
+    return "provider-meds";
   }
 	public String delMedication(String nam, String patien, String provide) {
 		if (nam.equals("") || patien.equals("") || provide.equals("") ) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                    FacesMessage.SEVERITY_INFO, "Must have name, patient, and provider to delete Medication", "..."));
-			return "";
+			return "provider-meds";
 		}
     try {
       c = this.connect();
@@ -541,7 +541,7 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, ex.getMessage(), "..."));
     }
 		resetValues();
-    return "provider-patients";
+    return "provider-meds";
   }
   private void resetValues() {
 		setFirstName("");
