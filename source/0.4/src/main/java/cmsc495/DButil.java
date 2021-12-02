@@ -309,7 +309,7 @@ public class DButil {
 		resetValues();
     return "main";
   }
-	public String updatePatientProvider() {
+	public String addProviderPatient() {
 		try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=? AND firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
@@ -324,7 +324,7 @@ public class DButil {
 		resetValues();
     return "provider-meds";
 	}
-	public String delPatientProvider() {
+	public String delProviderPatient() {
 		try {
       c = this.connect();
       PreparedStatement stmt = c.prepareStatement("UPDATE Patient SET provider=? WHERE lastName=? AND firstName=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
