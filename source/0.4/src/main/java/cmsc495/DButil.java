@@ -174,8 +174,8 @@ public class DButil {
     return false;
   }
 	// Provider view of Patient medications
-	public String viewPatientMeds(String user) {
-  	setPatient(user);
+	public String viewPatientMeds() {
+  	setPatient(patient);
   	setProvider(provider);
   	return "provider-patient-meds";
 	}
