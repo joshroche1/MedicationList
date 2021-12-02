@@ -25,7 +25,7 @@
 					</button>
           <div id="modalProviderProfile" class="w3-modal">
             <div class="w3-modal-content w3-container w3-card w3-animate-zoom">
-              <span onclick="document.getElementById('modalProviderProfile').style.display='none'" class="w3-button w3-red w3-display-topright">&times;</span>
+              <span onclick="document.getElementById('modalProviderProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
         			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="pt" class="w3-container w3-table-all w3-responsive">
 					    	<h:column><f:facet name="header">Username</f:facet>#{pt.username}</h:column>
 								<h:column><f:facet name="header">Email</f:facet>#{pt.email}</h:column>
@@ -113,6 +113,14 @@
         <h:column>
           <f:facet name="header">Provider</f:facet>
           #{med.provider}
+        </h:column>
+				<h:column>
+					<button onclick="document.getElementById('modalDelMed').style.display='block'" class="w3-button w3-red w3-round-xxlarge">DELETE</button>
+					<div id="modalDelMed" class="w3-modal">
+						<span onclick="document.getElementById('modalDelMed').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
+						<h:commandButton value="YES" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+						<button onclick="document.getElementById('modalDelMed').style.display='none'" class="w3-button w3-blue w3-round-xxlarge">NO</button>
+					</div>
         </h:column>
       </h:dataTable>
 			</div>
