@@ -9,18 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="resources/css/w3.css"/>
   <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
-  <title>myRx Registration</title>
+  <title>myRx Provider Registration</title>
 </head>
 <body>
 
-<div class="w3-content">
+<div class="w3-container">
 
-  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card w3-section">
+  <div id="header" class="header w3-container w3-row w3-cell-row w3-bar w3-teal w3-card">
     <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third">
     </div>
     <div class="w3-conatiner w3-cell w3-mobile w3-content w3-margin w3-third">
       <a href="index.xhtml"><h1>myRX</h1></a>
-      <h2>User Registration Form</h2>
+      <h2>Provider Registration Form</h2>
     </div>
     <div class="w3-container w3-cell w3-mobile w3-content w3-margin w3-third">
     </div>
@@ -28,83 +28,78 @@
 
   <div class="w3-cell-row w3-section">
 
-    <div class="w3-container w3-cell w3-cell-middle w3-mobile w3-twothird">
-      <form class="w3-container">
+    <div class="w3-container w3-cell w3-cell-middle w3-mobile">
+      <h:form id="patientRegistrationForm" class="w3-container">
         <label class="w3-text-blue">Email Address</label>
         <h:inputText id="userEmail"
-                     value="user@domain.end"
+                     value="#{beanDButil.email}"
                      required="true"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Username</label>
         <h:inputText id="userUsername"
-                     value="USERNAME"
+                     value="#{beanDButil.username}"
                      required="true"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Password</label>
         <h:inputSecret id="userPassword"
-                       value=""
+                       value="#{beanDButil.password}"
                        required="true"
                        class="w3-input w3-border" />
         <label class="w3-text-blue">Password Confirmation</label>
         <h:inputSecret id="userPassword2"
-                       value=""
+                       value="#{beanDButil.password}"
                        required="true"
                        class="w3-input w3-border" />
-        <label class="w3-text-blue">Access Token</label>
-        <h:inputText id="userToken"
-                     value="TOKEN"
-                     required="true"
-                     class="w3-input w3-border" />
-        <label class="w3-text-blue">First Name</label>
+	      <label class="w3-text-blue">Token</label>
+        <h:inputSecret id="usertoken"
+                       value="#{beanDButil.token}"
+                       required="true"
+                       class="w3-input w3-border" />
+        <label class="w3-text-blue">First Name:</label>
         <h:inputText id="userFirstName"
-                     value="FIRST NAME"
+                     value="#{beanDButil.firstName}"
                      required="true"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Middle Initial</label>
         <h:inputText id="userMiddleInitial"
-                     value="MIDDLE INITIAL"
+                     value="#{beanDButil.middleInitial}"
                      required="false"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Last Name</label>
         <h:inputText id="userLastName"
-                     value="LAST NAME"
+                     value="#{beanDButil.lastName}"
                      required="true"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Sex</label>
-        <select name="sex" 
+        <h:selectOneMenu name="sex"
+		value="#{beanDButil.sex}"
                 required="true"
                 class="w3-select">
-          <option value="M">Male</option>
-          <option value="F">Female</option>
-          <option value="N">Nonbinary</option>
-          <option value="X">Do Not Wish To Disclose</option>
-        </select>
+          <f:selectItem itemValue="M" itemLabel="Male" />
+          <f:selectItem itemValue="F" itemLabel="Female" />
+          <f:selectItem itemValue="N" itemLabel="Nonbinary" />
+          <f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
+        </h:selectOneMenu>
         <label class="w3-text-blue">Physical Address</label>
-        <h:inputText id="userAddress"
-                     value="1 Two Street, Threeville, ZZ 99999"
+        <h:inputTextarea id="userAddress"
+                     value="#{beanDButil.address}"
                      required="false"
                      class="w3-input w3-border" />
         <label class="w3-text-blue">Phone Number</label>
         <h:inputText id="userPhone"
-                     value="000-000-0000"
+                     value="#{beanDButil.phone}"
                      required="false"
                      class="w3-input w3-border" />
         <h:commandButton value="REGISTER"
-                         action="#"
+                         action="#{beanDButil.addProvider()}"
                          class="w3-button w3-teal"></h:commandButton>
         <button type="reset" class="w3-button w3-teal">RESET</button>
-      </form>
-    </div>
-
-    <div id="right" class="w3-container w3-cell w3-cell-middle w3-mobile w3-third">
-      <table class="w3-table">
-        <tr>Please fill out all applicable fields.</tr>
-      </table>
+      </h:form>
     </div>
 
   </div>
 
-  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card w3-section">
+  <div id="footer" class="footer w3-container w3-bar w3-teal w3-card">
     <a href="index.xhtml"><h2>myRX</h2></a>
   </div>
 	
