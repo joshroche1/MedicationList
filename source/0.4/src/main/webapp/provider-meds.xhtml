@@ -31,7 +31,7 @@
       </div>
 
     </div>
-    <div id="profileInfo" class="w3-container w3-mobile w3-car">
+    <div id="profileInfo" class="w3-container w3-center w3-mobile w3-card w3-light-blue">
 			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="p" class="w3-table w3-responsive">
 				<h:column>
 					<f:facet name="header">First</f:facet>#{p.firstName}
@@ -104,7 +104,7 @@
 		</div>
     <div id="middle" class="w3-container w3-mobile w3-card">
 			
-			<div class="w3-container w3-card">
+			<div class="w3-container w3-card w3-center">
       <h:dataTable id="providerMedTable" value="#{beanDButil.getMedications(beanProvider.username,1)}" var="med" class="w3-table-all w3-responsive">
         <h:column>
           <f:facet name="header">Patient</f:facet>
@@ -135,13 +135,7 @@
           #{med.provider}
         </h:column>
 				<h:column>
-					<button onclick="document.getElementById('modalDelMed').style.display='block'" class="w3-button w3-red w3-round-xxlarge">DELETE</button>
-					<div id="modalDelMed" class="w3-modal"><div class="w3-modal-content w3-container w3-card w3-animate-zoom">
-						<span onclick="document.getElementById('modalDelMed').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
-						<h3>Are you sure you want to remove #{med.name} from #{med.patient} ?</h3>
-						<h:commandButton value="YES" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
-						<button onclick="document.getElementById('modalDelMed').style.display='none'" class="w3-button w3-blue w3-round-xxlarge">NO</button>
-					</div></div>
+					<h:commandButton value="DELETE" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
         </h:column>
       </h:dataTable>
 			</div>
