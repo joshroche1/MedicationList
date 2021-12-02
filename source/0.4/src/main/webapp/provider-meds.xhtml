@@ -28,7 +28,7 @@
               <h:form id="user-profile-form" class="w3-container">
         			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="pt" class="w3-table-all w3-responsive">
 					    	<h:column><f:facet name="header">Username</f:facet>#{pt.username}</h:column>
-								<h:column><f:facet name="header">Email<f:facet>#{pt.email}</h:column>
+								<h:column><f:facet name="header">Email</f:facet>#{pt.email}</h:column>
 						  	<h:column><f:facet name="header">First Name</f:facet>#{pt.firstName}</h:column>
 								<h:column><f:facet name="header">MI</f:facet>#{pt.middleInitial}</h:column>
 								<h:column><f:facet name="header">Last Name</f:facet>#{pt.lastName}</h:column>
