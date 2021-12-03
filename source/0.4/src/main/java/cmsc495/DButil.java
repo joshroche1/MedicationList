@@ -139,6 +139,7 @@ public class DButil {
                    FacesMessage.SEVERITY_INFO, e.getMessage(), "..."));
 	  }
   }
+
   // For Patient user login
   public Boolean validateUser(String user, String pass) {
     try {
@@ -173,8 +174,18 @@ public class DButil {
     }
     return false;
   }
+	// Validate password during registration
+	public boolean validatePassword() {
+    if (password.equals(password2)) { 
+			return true; 
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                   FacesMessage.SEVERITY_INFO, "Password entires must match", "..."));
+		}
+    return false;
+  }
 	// Provider view of Patient medications
-	public String viewPatientMeds() {
+  public String viewPatientMeds() {
   	setPatient(patient);
   	setProvider(provider);
   	return "provider-patient-meds";
