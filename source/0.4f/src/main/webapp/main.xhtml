@@ -48,16 +48,19 @@
           <h3>Update Profile</h3>
 					<h:form id="user-profile-form" class="w3-container">
 						<h:dataTable value="#{beanDButil}" class="w3-table w3-responsive w3-light-blue">
-							<h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>
+							<h:column><f:facet name="header" class="w3-teal"><label>Email</label></f:facet>
+                <h:inputText value="#{beanDButil.email}" required="true" class="w3-input w3-border" />
+              </h:column>
+							<h:column><f:facet name="header" class="w3-teal"><label>First Name</label></f:facet>
 								<h:inputText value="#{beanDButil.firstName}" required="true" class="w3-input w3-border" />
               </h:column>
-							<h:column><f:facet name="header"><label class="w3-blue">MI</label></f:facet>
+							<h:column><f:facet name="header" class="w3-teal"><label>MI</label></f:facet>
 								<h:inputText value="#{beanDButil.middleInitial}" required="true" class="w3-input w3-border" />
               </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Last Name</label></f:facet>
+              <h:column><f:facet name="header" class="w3-teal"><label>Last Name</label></f:facet>
                 <h:inputText value="#{beanDButil.lastName}" required="true" class="w3-input w3-border" />
               </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Sex</label></f:facet>
+              <h:column><f:facet name="header" class="w3-teal"><label>Sex</label></f:facet>
                 <h:selectOneMenu value="#{beanDButil.sex}" required="true" class="w3-input w3-border">
                   <f:selectItem itemValue="M" itemLabel="Male" />
                   <f:selectItem itemValue="F" itemLabel="Female" />
@@ -65,27 +68,23 @@
                   <f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
                 </h:selectOneMenu>
               </h:column>
-            </h:dataTable><h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
-              <h:column><f:facet name="header"><label class="w3-blue">Phone</label></f:facet>
+            </h:dataTable><h:dataTable value="#{beanDButil}" class="w3-table w3-light-blue w3-responsive">
+              <h:column><f:facet name="header" class="w3-teal"><label>Phone</label></f:facet>
                 <h:inputText value="#{beanDButil.phone}" required="false" class="w3-input w3-border" />
               </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Address</label></f:facet>
+              <h:column><f:facet name="header" class="w3-teal"><label>Address</label></f:facet>
                 <h:inputText value="#{beanDButil.address}" required="false" class="w3-input w3-border" />
               </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Username</label></f:facet>
+              <h:column><f:facet name="header" class="w3-teal"><label>Username</label></f:facet>
                 <h:inputText value="#{beanDButil.username}" required="true" class="w3-input w3-border" />
               </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Email</label></f:facet>
-                <h:inputText value="#{beanDButil.email}" required="true" class="w3-input w3-border" />
-              </h:column>
-              <h:column><f:facet name="header"><label class="w3-blue">Password</label></f:facet>
+              <h:column><f:facet name="header" class="w3-teal"><label>Password</label></f:facet>
                 <h:inputSecret value="#{beanDButil.password}" required="true" class="w3-input w3-border" />
                 <h:inputSecret value="#{beanDButil.password2}" required="true" class="w3-input w3-border" />
               </h:column>
               <h:column>
-                <h:commandButton value="UPDATE" action="#{beanDButil.updatePatient()}" class="w3-button w3-teal w3-round-xxlarge" />
-                <button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
-                <button onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-round-xxlarge">CLOSE</button>
+                <h:commandButton value="UPDATE" action="#{beanDButil.updatePatient()}" class="w3-button w3-margin w3-teal w3-round-xxlarge" />
+                <button onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-margin w3-round-xxlarge">CLOSE</button>
               </h:column>
             </h:dataTable>
           </h:form>
