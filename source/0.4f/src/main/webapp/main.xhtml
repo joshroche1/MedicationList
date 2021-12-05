@@ -43,11 +43,11 @@
       <f:facet name="header">Update</f:facet>
       <button onclick="document.getElementById('modalUpdateProfile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">UPDATE</button>
       <div id="modalUpdateProfile" class="w3-modal">
-        <div class="w3-modal-content w3-container w3-card w3-padding w3-margin w3-animate-zoom">
+        <div class="w3-modal-content w3-container w3-card w3-light-blue w3-animate-zoom">
           <span onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
           <h3>Update Profile</h3>
 					<h:form id="user-profile-form" class="w3-container">
-						<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+						<h:dataTable value="#{beanDButil}" class="w3-table w3-responsive w3-light-blue">
 							<h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>
 								<h:inputText value="#{beanDButil.firstName}" required="true" class="w3-input w3-border" />
               </h:column>
