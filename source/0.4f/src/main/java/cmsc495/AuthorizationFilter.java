@@ -34,9 +34,11 @@ public class AuthorizationFilter implements Filter {
           || reqURI.indexOf("/index.xhtml") >= 0
           || reqURI.indexOf("/provider-login.xhtml") >= 0
           || reqURI.indexOf("/register.xhtml") >= 0
+          || reqURI.indexOf("/register-provider.xhtml") >= 0
           || reqURI.indexOf("/test.xhtml") >= 0
           || (reqURI.indexOf("/patient-profile.xhtml") >= 0 && (ses != null && ses.getAttribute("username") != null))
           || (reqURI.indexOf("/provider-profile.xhtml") >= 0 && (ses != null && ses.getAttribute("username") != null))
+          || (reqURI.indexOf("/provider-meds.xhtml") >= 0 && (ses != null && ses.getAttribute("username") != null))
           || reqURI.contains("javax.faces.resource"))
              chain.doFilter(request, response);
       else

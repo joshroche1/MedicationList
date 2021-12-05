@@ -13,95 +13,16 @@
 </head>
 <body>
 
-<div class="w3-content">
-  <div id="body" class="w3-container w3-mobile w3-auto">
+<div>
+  <div id="body" class="w3-container w3-mobile">
   
-    <div id="top" class="w3-container w3-bar w3-teal w3-card">
+    <div id="top" class="w3-bar w3-teal w3-card">
     
-      <div class="w3-container w3-content w3-mobile w3-row w3-padding">
+      <div class="w3-container w3-mobile w3-row w3-padding">
         <div class="w3-container w3-center w3-col s4 m4 l4">
-          <button onclick="document.getElementById('modalPatientProfile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">
-          #{beanPatient.username}</button>
-          <div id="modalPatientProfile" class="w3-modal">
-            <div class="w3-modal-content w3-container w3-card w3-animate-zoom">
-              <span onclick="document.getElementById('modalPatientProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
-                <h:form id="user-profile-form" class="w3-container">
-                  <h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
-                    <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
-	                    #{pt.firstName}
-                    <h:inputText id="userFirstName"
-                       value="#{beanPatient.firstName}"
-                       required="true"
-                       class="w3-input w3-border" /></h:column>
-                    <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Middle Initial</label></f:facet>
-	                    #{pt.middleInitial} 
-                    <h:inputText id="userMiddleInitial"
-                       value="#{beanPatient.middleInitial}"
-                       required="false"
-                       class="w3-input w3-border" /></h:column>
-    					      <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
-						          #{pt.lastName} 
-					          <h:inputText id="userLastName"
-                       value="#{beanPatient.lastName}"
-                       required="true"
-                       class="w3-input w3-border" /></h:column>
-					          <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Sex</label></f:facet>
-					            #{pt.sex}
-					            <h:selectOneListbox name="sex"
-													value="#{beanPatient.sex}"
-               						 required="true"
-               						 class="w3-select">
-        						    <f:selectItem itemValue="M" itemLabel="Male" />
-        						    <f:selectItem itemValue="F" itemLabel="Female" />
-       						      <f:selectItem itemValue="N" itemLabel="Nonbinary" />
-        						    <f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
-       						   </h:selectOneListbox></h:column>
-       					   <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Email Address</label></f:facet>
-	    				      #{pt.email} 
-      					    <h:inputText id="userEmail"
-                       value="#{beanPatient.email}"
-                       required="true"
-											 class="w3-input w3-border" /></h:column></h:dataTable>
-										<h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="pt" class="w3-table-all">
-   					       <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Physical Address</label></f:facet>
-	      				    #{pt.address} 
-        					  <h:inputText id="userAddress"
-                       value="#{beanPatient.address}"
-                       required="false"
-                       class="w3-input w3-border" /></h:column>
-      						    <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Phone Number</label></f:facet>
-      						  	  #{pt.phone} 
-     						     <h:inputText id="userPhone"
-                       value="#{beanPatient.phone}"
-                       required="false"
-                       class="w3-input w3-border" /></h:column>
-      					    <h:column rowHeader="true"><f:facet name="header"><label class="w3-text-blue">Username</label></f:facet>
-	          #{pt.username} 
-          <h:inputText id="userUsername"
-                       value="#{beanPatient.username}"
-                       required="true"
-                       class="w3-input w3-border" /></h:column>
-	    	  <h:column><f:facet name="header"><label class="w3-text-blue">Password</label></f:facet>
-          <h:inputSecret id="userPassword"
-                         value="#{beanPatient.password}"
-                         required="true"
-                         class="w3-input w3-border" />
-          <label class="w3-text-blue">Password Confirmation</label>
-          <h:inputSecret id="userPassword2"
-                         value="#{beanPatient.password2}"
-                         required="true"
-                         class="w3-input w3-border" /></h:column>
-          <h:column rowHeader="true"><h:commandButton value="UPDATE PROFILE"
-                           action="#{beanPatient.updateProfile()}"
-                           class="w3-button w3-teal"></h:commandButton>
-          <button type="reset" class="w3-button w3-teal">RESET</button></h:column>
-      	</h:dataTable>
-      </h:form>
-              </div>
-            
-					</div>
+					<h2>#{beanPatient.username}</h2>
         </div>
-        <div class="w3-container w3-center w3-col s4 m4 l4"><h1>myRx</h1></div>
+        <div class="w3-container w3-center w3-col s4 m4 l4"><a href="index.xhtml"><h1>myRX</h1></a></div>
         <div class="w3-container w3-center w3-col s4 m4 l4">
           <h:form>
             <h:commandButton action="#{beanPatient.logout}" value="LOGOUT" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
@@ -110,11 +31,78 @@
       </div>
 
     </div>
+		<div id="profileInfo" class="w3-container w3-center w3-mobile w3-card w3-blue">
+			<h:dataTable value="#{beanDButil.getPatient(beanPatient.username)}" var="p" class="w3-table w3-responsive">
+				<h:column>
+					<f:facet name="header">First</f:facet>#{p.firstName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">MI</f:facet>#{p.middleInitial}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Last</f:facet>#{p.lastName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Sex</f:facet>#{p.sex}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Phone</f:facet>#{p.phone}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Address</f:facet>#{p.address}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>#{p.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Username</f:facet>#{p.username}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Update</f:facet>
+					<button onclick="document.getElementById('modalUpdateProfile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">UPDATE</button>
+					<div id="modalUpdateProfile" class="w3-modal"><div class="w3-modal-content w3-container w3-card w3-animate-zoom">
+						<span onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
+						<h3>Update Profile</h3>
+						<h:form id="user-profile-form" class="w3-container">
+							<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+								<h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>
+									<h:inputText value="#{beanDButil.firstName}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">MI</label></f:facet>
+									<h:inputText value="#{beanDButil.middleInitial}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Last Name</label></f:facet>
+									<h:inputText value="#{beanDButil.lastName}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Sex</label></f:facet>
+									<h:selectOneMenu value="#{beanDButil.sex}" required="true" class="w3-input w3-border">
+										<f:selectItem itemValue="M" itemLabel="Male" />
+										<f:selectItem itemValue="F" itemLabel="Female" />
+										<f:selectItem itemValue="N" itemLabel="Non-Binary" />
+										<f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
+									</h:selectOneMenu></h:column>
+							</h:dataTable><h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+								<h:column><f:facet name="header"><label class="w3-blue">Phone</label></f:facet>
+									<h:inputText value="#{beanDButil.phone}" required="false" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Address</label></f:facet>
+									<h:inputText value="#{beanDButil.address}" required="false" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Username</label></f:facet>
+									<h:inputText value="#{beanDButil.username}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Email</label></f:facet>
+									<h:inputText value="#{beanDButil.email}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><f:facet name="header"><label class="w3-blue">Password</label></f:facet>
+									<h:inputSecret value="#{beanDButil.password}" required="true" class="w3-input w3-border" />
+									<h:inputSecret value="#{beanDButil.password2}" required="true" class="w3-input w3-border" /></h:column>
+								<h:column><h:commandButton value="UPDATE" action="#{beanDButil.updatePatient()}" class="w3-button w3-teal w3-round-xxlarge" />
+  	      				<button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
+									<button onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-round-xxlarge">CLOSE</button></h:column>
+							</h:dataTable>
+						</h:form>
+					</div></div>
+				</h:column>
+			</h:dataTable>
+		</div>
     
     <div id="middle" class="w3-container w3-mobile w3-card">
-      <h:message id="errormessage" for="patientMedTable" />
 
-      <h:dataTable id="patientMedTable" value="#{beanDButil.getMedications(beanPatient.username)}" var="med" class="w3-table-all">
+      <h:dataTable id="patientMedTable" value="#{beanDButil.getMedications(beanPatient.username)}" var="med" class="w3-table-all w3-responsive">
         <h:column>
           <f:facet name="header">Medication</f:facet>
           #{med.name}
@@ -137,25 +125,9 @@
         </h:column>
         <h:column>
           <f:facet name="header">Provider</f:facet>
-          #{med.prescriber}
+          #{med.provider}
         </h:column>
       </h:dataTable>
-<!--
-      <div id="modal01" class="w3-modal">
-        <div class="w3-modal-content w3-container w3-card w3-animate-zoom">
-          <span onclick="document.getElementById('modal01').style.display='none'" class="w3-button w3-display-topright">X</span>
-          <table class="w3-table-all">
-            <tr><h1>MEDICATION NAME</h1></tr>
-            <tr><h2>Manufacturer</h2></tr>
-            <tr>
-              <p>Some text about the medication. This can be fetched from the database or resource text/xml files in a folder.</p>
-            </tr>
-          </table>
-          <button onclick="document.getElementById('modal01').style.display='none'" type="button" class="w3-button w3-red">CLOSE</button>
-        </div>
-      </div>
--->
-    </div>
 
     <div id="bottom" class="w3-container w3-mobile w3-card w3-teal">
       <div class="w3-container w3-bar w3-mobile w3-row w3-padding">
@@ -163,14 +135,11 @@
           <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-white w3-round-xxlarge">HOME</button>
           </div>
         </a>
-        <a href="patient-profile.xhtml">
-          <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-white w3-round-xxlarge">PROFILE-PAGE</button>
-          </div>
-        </a>
       </div>
     </div>
 
   </div>
+</div>
 </div>
 
 </body>

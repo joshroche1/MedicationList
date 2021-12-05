@@ -14,8 +14,16 @@
   <navigation-rule>
     <from-view-id>/provider-login.xhtml</from-view-id>
     <navigation-case>
-      <from-outcome>provider-patients</from-outcome>
-      <to-view-id>/provider-patients.xhtml</to-view-id>
+      <from-outcome>provider-meds</from-outcome>
+      <to-view-id>/provider-meds.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+	<navigation-rule>
+    <from-view-id>/provider-patients.xhtml</from-view-id>
+    <navigation-case>
+			<from-action>#{beanDButil.viewPatientMeds()}</from-action>
+      <from-outcome>provider-patient-meds</from-outcome>
+      <to-view-id>/provider-patient-meds.xhtml</to-view-id>
     </navigation-case>
   </navigation-rule>
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <h:outputStylesheet library="css" name="w3.css" />
+  <title>INDEX</title>
+</h:head>
+<h:body>
+
+<ui:composition template="templates/template-main.xhtml">
+
+<ui:define name="header">
+
+<div id="body" class="w3-container w3-mobile">
+  <div id="top" class="w3-bar w3-teal w3-card">
+    <div class="w3-container w3-mobile w3-row w3-padding">
+      <div class="w3-container w3-center w3-col s4 m4 l4">
+        <h2>#{beanProvider.username}</h2>
+      </div>
+      <div class="w3-container w3-center w3-col s4 m4 l4">
+        <a href="index.xhtml"><h1>myRX</h1></a>
+        <h2>Prescribed Medications</h2>
+      </div>
+      <div class="w3-container w3-center w3-col s4 m4 l4">
+        <h:form>
+          <h:commandButton action="#{beanProvider.logout}" value="LOGOUT" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
+        </h:form>
+      </div>
+    </div>
+  </div>
+  <div id="profileInfo" class="w3-container w3-center w3-mobile w3-card w3-blue">
+    <h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="p" class="w3-table w3-responsive">
+    <h:column><f:facet name="header">First</f:facet>#{p.firstName}</h:column>
+    <h:column><f:facet name="header">MI</f:facet>#{p.middleInitial}</h:column>
+    <h:column><f:facet name="header">Last</f:facet>#{p.lastName}</h:column>
+    <h:column><f:facet name="header">Sex</f:facet>#{p.sex}</h:column>
+    <h:column><f:facet name="header">Phone</f:facet>#{p.phone}</h:column>
+    <h:column><f:facet name="header">Address</f:facet>#{p.address}</h:column>
+    <h:column><f:facet name="header">Email</f:facet>#{p.email}</h:column>
+    <h:column><f:facet name="header">Username</f:facet>#{p.username}</h:column>
+    <h:column><f:facet name="header">Token</f:facet>#{p.token}</h:column>
+    <h:column><f:facet name="header">Update</f:facet>
+      <button onclick="document.getElementById('modalUpdateProfile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">UPDATE</button>
+      <div id="modalUpdateProfile" class="w3-modal">
+        <div class="w3-modal-content w3-container w3-card w3-animate-zoom">
+          <span onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-display-topright">X</span>
+          <h3>Update Profile</h3>
+          <h:form id="user-profile-form" class="w3-container">
+            <h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+              <h:column><f:facet name="header"><label class="w3-blue">First Name</label></f:facet>
+                <h:inputText value="#{beanDButil.firstName}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">MI</label></f:facet>
+                <h:inputText value="#{beanDButil.middleInitial}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Last Name</label></f:facet>
+                <h:inputText value="#{beanDButil.lastName}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Sex</label></f:facet>
+                <h:selectOneMenu value="#{beanDButil.sex}" required="true" class="w3-input w3-border">
+                  <f:selectItem itemValue="M" itemLabel="Male" />
+                  <f:selectItem itemValue="F" itemLabel="Female" />
+                  <f:selectItem itemValue="N" itemLabel="Non-Binary" />
+                  <f:selectItem itemValue="X" itemLabel="Do Not Wish To Disclose" />
+                </h:selectOneMenu>
+              </h:column>
+            </h:dataTable><h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+              <h:column><f:facet name="header"><label class="w3-blue">Phone</label></f:facet>
+                <h:inputText value="#{beanDButil.phone}" required="false" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Address</label></f:facet>
+                <h:inputText value="#{beanDButil.address}" required="false" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Username</label></f:facet>
+                <h:inputText value="#{beanDButil.username}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Email</label></f:facet>
+                <h:inputText value="#{beanDButil.email}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column><f:facet name="header"><label class="w3-blue">Password</label></f:facet>
+                <h:inputSecret value="#{beanDButil.password}" required="true" class="w3-input w3-border" />
+                <h:inputSecret value="#{beanDButil.password2}" required="true" class="w3-input w3-border" />
+              </h:column>
+              <h:column>
+                <h:commandButton value="UPDATE" action="#{beanDButil.updateProvider()}" class="w3-button w3-teal w3-round-xxlarge" />
+                <button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
+                <button onclick="document.getElementById('modalUpdateProfile').style.display='none'" class="w3-button w3-red w3-round-xxlarge">CLOSE</button>
+              </h:column>
+            </h:dataTable>
+          </h:form>
+        </div>
+      </div>
+    </h:column>
+</h:dataTable>
+</div>
+
+</ui:define>
+
+</ui:composition>
+
+</h:body>
+</html>

@@ -6,7 +6,7 @@
 
   <groupId>CMSC495</groupId>
   <artifactId>myRxJSP</artifactId>
-  <version>0.4</version>
+  <version>0.4f</version>
   <packaging>war</packaging>
   <name>${project.artifactId.version}</name>
 
