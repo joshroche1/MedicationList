@@ -11,10 +11,10 @@ public class Medication {
   private String doseUnit = "";
   private String issueDate;
   private String expDate;
-  private String prescriber;
-  private String testinfo = "MEDICATION Meds meds!";
+	private String patient;
+  private String provider;
 
-  public Medication() {} // Added by Josh Roche
+  public Medication() {}
   //Constructor method (basic)
   public Medication(String name, double dosage, String doseUnit) {
 	  this.name = name;
@@ -29,11 +29,7 @@ public class Medication {
     this.doseUnit = doseUnit;
     this.issueDate = issued;
     this.expDate = expired;
-    this.prescriber = provider;
-  }
-
-  public String getTest() {
-    return this.testinfo;
+    this.provider = provider;
   }
 
   //
@@ -60,10 +56,14 @@ public class Medication {
   public void setExpDate(String expdate) {
     this.expDate = expdate;
   }
+	
+	public void setPatient(String patient) {
+    this.patient = patient;
+  }
 
   //
-  public void setPrescriber(String provider) {
-    this.prescriber = provider;
+  public void setProvider(String provider) {
+    this.provider = provider;
   }
 
   //This method will retrn the name of a medication
@@ -90,9 +90,14 @@ public class Medication {
   public String getExpDate() {
     return this.expDate;
   }
+	
+	//This method will return the name of the patient that is prescribed the medication
+  public String getPatient() {
+    return this.patient;
+  }
 
   //This method will return the name of the physician that prescribed a particular prescription
-  public String getPrescriber() {
-    return this.prescriber;
+  public String getProvider() {
+    return this.provider;
   }
 }
