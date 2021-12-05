@@ -32,7 +32,6 @@ public class DButil {
   private String email;
   private String address;
   private String phone;
-  private String token;
   
   // Medication variables
   private String name;
@@ -53,7 +52,6 @@ public class DButil {
   public void setEmail(String temp) { email = temp; }
   public void setAddress(String temp) { address = temp; }
   public void setPhone(String temp) { phone = temp; }
-  public void setToken(String temp) { token = temp; }
   public void setName(String temp) { name = temp; }
   public void setDosage(double temp) { dosage = temp; }
   public void setDoseUnit(String temp) { doseUnit = temp; }
@@ -72,7 +70,6 @@ public class DButil {
   public String getEmail() { return email; }
   public String getAddress() { return address; }
   public String getPhone() { return phone; }
-  public String getToken() { return token; }
   public String getName() { return name; }
   public double getDosage() { return dosage; }
   public String getDoseUnit() { return doseUnit; }
@@ -160,10 +157,9 @@ public class DButil {
   public Boolean validateUser(String user, String pass, String tok) {
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT username FROM Provider WHERE username=? AND password=? AND token=?");
+      PreparedStatement stmt = c.prepareStatement("SELECT username FROM Provider WHERE username=? AND password=?");
       stmt.setString(1, user);
       stmt.setString(2, pass);
-      stmt.setString(3, tok);
       rs = stmt.executeQuery();
       stmt.close();
       c.close();
@@ -277,7 +273,7 @@ public class DButil {
     rs = null;
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, token, phone, address FROM Provider",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("SELECT lastName, firstName, middleInitial, sex, email, username, password, phone, address FROM Provider",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
@@ -289,7 +285,7 @@ public class DButil {
   public ResultSet getProvider(String user) {
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("SELECT firstName, middleInitial, lastName, sex, email, address, phone, token FROM Provider WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("SELECT firstName, middleInitial, lastName, sex, email, address, phone FROM Provider WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1, user);
       rs = stmt.executeQuery();
     } catch (SQLException ex) {
@@ -354,17 +350,16 @@ public class DButil {
   public String updateProvider() { 
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("UPDATE Provider SET password=?,token=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("UPDATE Provider SET password=?,firstName=?,middleInitial=?,lastName=?,sex=?,email=?,address=?,phone=? WHERE username=?",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,password);
-      stmt.setString(2,token);
-      stmt.setString(3,firstName);
-      stmt.setString(4,middleInitial);
-      stmt.setString(5,lastName);
-      stmt.setString(6,sex);
-      stmt.setString(7,email);
-      stmt.setString(8,address);
-      stmt.setString(9,phone);
-      stmt.setString(10,username);
+      stmt.setString(2,firstName);
+      stmt.setString(3,middleInitial);
+      stmt.setString(4,lastName);
+      stmt.setString(5,sex);
+      stmt.setString(6,email);
+      stmt.setString(7,address);
+      stmt.setString(8,phone);
+      stmt.setString(9,username);
       stmt.execute();
     } catch (SQLException ex) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
@@ -449,17 +444,16 @@ public class DButil {
   public String addProvider() {
     try {
       c = this.connect();
-      PreparedStatement stmt = c.prepareStatement("INSERT INTO Provider VALUES (?,?,?,?,?,?,?,?,?,?)",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+      PreparedStatement stmt = c.prepareStatement("INSERT INTO Provider VALUES (?,?,?,?,?,?,?,?,?)",ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
       stmt.setString(1,username);
       stmt.setString(2,password);
-      stmt.setString(3,token);
-      stmt.setString(4,email);
-      stmt.setString(5,firstName);
-      stmt.setString(6,middleInitial);
-      stmt.setString(7,lastName);
-      stmt.setString(8,sex);
-      stmt.setString(9,phone);
-      stmt.setString(10,address);
+      stmt.setString(3,email);
+      stmt.setString(4,firstName);
+      stmt.setString(5,middleInitial);
+      stmt.setString(6,lastName);
+      stmt.setString(7,sex);
+      stmt.setString(8,phone);
+      stmt.setString(9,address);
       stmt.execute();
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
@@ -580,7 +574,6 @@ public class DButil {
 		setEmail("");
 		setAddress("");
 		setPhone("");
-		setToken("");
 		setName("");
 		setDosage(0);
 		setDoseUnit("");
