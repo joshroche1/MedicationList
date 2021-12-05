@@ -4,32 +4,32 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-<head>
+<h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="resources/css/w3.css"/>
-  <link rel="stylesheet" href="resources/css/font-awesome.min.css" />
   <title>myRx Provider Medications</title>
-</head>
-<body>
+</h:head>
+<h:body>
+
+<ui:composition template="templates/template-main.xhtml">
+
+<ui:define name="header">
 
 <div>
   <div id="body" class="w3-container w3-mobile">
-  
     <div id="top" class="w3-bar w3-teal w3-card">
-    
       <div class="w3-container w3-mobile w3-row w3-padding">
         <div class="w3-container w3-center w3-col s4 m4 l4">
 					<h2>#{beanProvider.username}</h2>
         </div>
-        <div class="w3-container w3-center w3-col s4 m4 l4"><a href="index.xhtml"><h1>myRX</h1></a><h2>Prescribed Medications</h2></div>
+        <div class="w3-container w3-center w3-col s4 m4 l4"><a href="index.xhtml"><h:graphicImage url="myRx.png"/></a><h2>Prescribed Medications</h2></div>
         <div class="w3-container w3-center w3-col s4 m4 l4">
           <h:form>
             <h:commandButton action="#{beanProvider.logout}" value="LOGOUT" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
           </h:form>
         </div>
       </div>
-
     </div>
     <div id="profileInfo" class="w3-container w3-center w3-mobile w3-card w3-blue">
 			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="p" class="w3-table w3-responsive">
@@ -56,9 +56,6 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Username</f:facet>#{p.username}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Token</f:facet>#{p.token}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Update</f:facet>
@@ -102,155 +99,151 @@
 				</h:column>
 			</h:dataTable>
 		</div>
-    <div id="middle" class="w3-container w3-mobile w3-card">
-			
-			<div class="w3-container w3-card w3-center">
-      <h:dataTable id="providerMedTable" value="#{beanDButil.getMedications(beanProvider.username,1)}" var="med" class="w3-table-all w3-responsive">
-        <h:column>
-          <f:facet name="header">Patient</f:facet>
-          #{med.patient}
+	</div>
+</ui:define>
+
+<ui:define name="content">
+
+<div id="middle" class="w3-container w3-mobile w3-card">
+	<div class="w3-container w3-card w3-center">
+    <h:dataTable id="providerMedTable" value="#{beanDButil.getMedications(beanProvider.username,1)}" var="med" class="w3-table-all w3-responsive">
+      <h:column>
+        <f:facet name="header">Patient</f:facet>
+        #{med.patient}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Medication</f:facet>
+        #{med.name}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Dosage</f:facet>
+        #{med.dosage}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Unit</f:facet>
+        #{med.doseUnit}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Issue Date</f:facet>
+        #{med.issueDate}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Expiration Date</f:facet>
+        #{med.expDate}
+      </h:column>
+      <h:column>
+        <f:facet name="header">Provider</f:facet>
+        #{med.provider}
+      </h:column>
+			<h:column>
+				<h:commandButton value="DELETE" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+      </h:column>
+    </h:dataTable>
+	</div>
+	<div class="w3-container w3-card">
+		<h:form>
+			<h2>Add Medication to Patient</h2>
+      <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all w3-responsive">
+        <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
+          <h:inputText id="medName" value="#{beanDButil.name}" required="true" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Dosage</label></f:facet>
+          <h:inputText id="medDosage" value="#{beanDButil.dosage}" required="true" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Unit</label></f:facet>
+          <h:selectOneMenu value="#{beanDButil.doseUnit}" required="true" class="w3-select">
+            <f:selectItem itemValue="g" itemLabel="grams" />
+            <f:selectItem itemValue="mg" itemLabel="milligrams" />
+            <f:selectItem itemValue="ug" itemLabel="micrograms" />
+          </h:selectOneMenu>
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Issued</label></f:facet>
+          <h:inputText id="medIssued" value="#{beanDButil.issueDate}" required="true" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Expires</label></f:facet>
+          <h:inputText id="medExp" value="#{beanDButil.expDate}" required="true" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
+          <h:inputText id="medPatient" value="#{beanDButil.patient}" required="true" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
+          <h:inputText id="medProvider" value="#{beanDButil.provider}" required="true" class="w3-input w3-border" />
         </h:column>
         <h:column>
-          <f:facet name="header">Medication</f:facet>
-          #{med.name}
-        </h:column>
-        <h:column>
-          <f:facet name="header">Dosage</f:facet>
-          #{med.dosage}
-        </h:column>
-        <h:column>
-          <f:facet name="header">Unit</f:facet>
-          #{med.doseUnit}
-        </h:column>
-        <h:column>
-          <f:facet name="header">Issue Date</f:facet>
-          #{med.issueDate}
-        </h:column>
-        <h:column>
-          <f:facet name="header">Expiration Date</f:facet>
-          #{med.expDate}
-        </h:column>
-        <h:column>
-          <f:facet name="header">Provider</f:facet>
-          #{med.provider}
-        </h:column>
-				<h:column>
-					<h:commandButton value="DELETE" action="#{beanDButil.delMedication(med.name,med.patient,med.provider)}" class="w3-button w3-red w3-round-xlarge"></h:commandButton>
+          <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
+          <button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
         </h:column>
       </h:dataTable>
-			</div>
-			<div class="w3-container w3-card">
-			<h:form>
-				<h2>Add Medication to Patient</h2>
-        <h:dataTable value="#{beanDButil}" var="med" class="w3-table-all w3-responsive">
-          <h:column><f:facet name="header"><label class="w3-text-blue">Name</label></f:facet>
-            <h:inputText id="medName" value="#{beanDButil.name}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Dosage</label></f:facet>
-            <h:inputText id="medDosage" value="#{beanDButil.dosage}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Unit</label></f:facet>
-            <h:selectOneMenu value="#{beanDButil.doseUnit}" required="true" class="w3-select">
-              <f:selectItem itemValue="g" itemLabel="grams" />
-              <f:selectItem itemValue="mg" itemLabel="milligrams" />
-              <f:selectItem itemValue="ug" itemLabel="micrograms" />
-            </h:selectOneMenu>
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Issued</label></f:facet>
-            <h:inputText id="medIssued" value="#{beanDButil.issueDate}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Expires</label></f:facet>
-            <h:inputText id="medExp" value="#{beanDButil.expDate}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
-            <h:inputText id="medPatient" value="#{beanDButil.patient}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
-            <h:inputText id="medProvider" value="#{beanDButil.provider}" required="true" class="w3-input w3-border" />
-          </h:column>
-          <h:column>
-            <h:commandButton value="ADD" action="#{beanDButil.addMedication()}" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
-            <button type="reset" class="w3-button w3-teal w3-round-xxlarge">RESET</button>
-          </h:column>
-        </h:dataTable>
-      </h:form>
-			</div>
-			<div class="w3-container w3-card">
-			<h:form>
-				<h2>Remove Medication from Patient</h2>
-        <h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
-          <h:column><f:facet name="header"><label class="w3-text-blue">Med Name</label></f:facet>
-            <h:inputText id="medDelName" value="#{beanDButil.name}" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
-            <h:inputText id="medDelPatient" value="#{beanDButil.patient}" class="w3-input w3-border" />
-          </h:column>
-          <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
-            <h:inputText id="medDelProvider" value="#{beanDButil.provider}" class="w3-input w3-border" />
-          </h:column>
-          <h:column>
-            <h:commandButton value="DEL" action="#{beanDButil.delMedication()}" class="w3-button w3-red w3-round-xxlarge"></h:commandButton>
-          </h:column>
-        </h:dataTable>
-      </h:form>
-			</div>
-			<div class="w3-container w3-card">
-			<h:form>
-				<h2>Add Patient</h2>
-				<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
-						<h:inputText value="#{beanDButil.firstName}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
-						<h:inputText value="#{beanDButil.lastName}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">Provider Username</label></f:facet>
-						<h:inputText value="#{beanDButil.provider}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<h:commandButton value="ADD PATIENT" action="#{beanDButil.addProviderPatient()}" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
-					</h:column>
-				</h:dataTable>
-			</h:form>
-			</div>
-			<div class="w3-container w3-card">
-				<h2>Remove Patient</h2>
-			<h:form>
-				<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
-						<h:inputText value="#{beanDButil.firstName}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
-						<h:inputText value="#{beanDButil.lastName}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<f:facet name="header"><label class="w3-text-blue">Provider Username</label></f:facet>
-						<h:inputText value="#{beanDButil.provider}" class="w3-input" />
-					</h:column>
-					<h:column>
-						<h:commandButton value="DEL PATIENT" action="#{beanDButil.delProviderPatient()}" class="w3-button w3-red w3-round-xxlarge"></h:commandButton>
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</div>
-		</div>
-
-    <div id="bottom" class="w3-container w3-mobile w3-card w3-teal">
-      <div class="w3-container w3-bar w3-mobile w3-row w3-padding">
-        <a href="index.xhtml">
-          <div class="w3-container w3-center w3-col s3 m3 l3"><button class="w3-button w3-white w3-round-xxlarge">HOME</button>
-          </div>
-        </a>
-      </div>
-    </div>
-
-  </div>
+    </h:form>
+	</div>
+	<div class="w3-container w3-card">
+		<h:form>
+			<h2>Remove Medication from Patient</h2>
+      <h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+        <h:column><f:facet name="header"><label class="w3-text-blue">Med Name</label></f:facet>
+          <h:inputText id="medDelName" value="#{beanDButil.name}" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Patient</label></f:facet>
+          <h:inputText id="medDelPatient" value="#{beanDButil.patient}" class="w3-input w3-border" />
+        </h:column>
+        <h:column><f:facet name="header"><label class="w3-text-blue">Provider</label></f:facet>
+          <h:inputText id="medDelProvider" value="#{beanDButil.provider}" class="w3-input w3-border" />
+        </h:column>
+        <h:column>
+          <h:commandButton value="DEL" action="#{beanDButil.delMedication()}" class="w3-button w3-red w3-round-xxlarge"></h:commandButton>
+        </h:column>
+      </h:dataTable>
+    </h:form>
+	</div>
+	<div class="w3-container w3-card">
+		<h:form>
+			<h2>Add Patient</h2>
+			<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
+					<h:inputText value="#{beanDButil.firstName}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
+					<h:inputText value="#{beanDButil.lastName}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">Provider Username</label></f:facet>
+					<h:inputText value="#{beanDButil.provider}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<h:commandButton value="ADD PATIENT" action="#{beanDButil.addProviderPatient()}" class="w3-button w3-green w3-round-xxlarge"></h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+	<div class="w3-container w3-card">
+		<h2>Remove Patient</h2>
+		<h:form>
+			<h:dataTable value="#{beanDButil}" class="w3-table-all w3-responsive">
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
+					<h:inputText value="#{beanDButil.firstName}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">Last Name</label></f:facet>
+					<h:inputText value="#{beanDButil.lastName}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"><label class="w3-text-blue">Provider Username</label></f:facet>
+					<h:inputText value="#{beanDButil.provider}" class="w3-input" />
+				</h:column>
+				<h:column>
+					<h:commandButton value="DEL PATIENT" action="#{beanDButil.delProviderPatient()}" class="w3-button w3-red w3-round-xxlarge"></h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
 </div>
 
-</body>
+</ui:define>
+
+</ui:composition>
+
+</h:body>
 </html>
