@@ -33,30 +33,14 @@
     </div>
     <div id="profileInfo" class="w3-container w3-center w3-mobile w3-card w3-blue">
 			<h:dataTable value="#{beanDButil.getProvider(beanProvider.username)}" var="p" class="w3-table w3-responsive">
-				<h:column>
-					<f:facet name="header">First</f:facet>#{p.firstName}
-				</h:column>
-				<h:column>
-					<f:facet name="header">MI</f:facet>#{p.middleInitial}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Last</f:facet>#{p.lastName}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Sex</f:facet>#{p.sex}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Phone</f:facet>#{p.phone}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Address</f:facet>#{p.address}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Email</f:facet>#{p.email}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Username</f:facet>#{p.username}
-				</h:column>
+				<h:column><f:facet name="header">First</f:facet>#{p.firstName}</h:column>
+				<h:column><f:facet name="header">MI</f:facet>#{p.middleInitial}</h:column>
+				<h:column><f:facet name="header">Last</f:facet>#{p.lastName}</h:column>
+				<h:column><f:facet name="header">Sex</f:facet>#{p.sex}</h:column>
+				<h:column><f:facet name="header">Phone</f:facet>#{p.phone}</h:column>
+				<h:column><f:facet name="header">Address</f:facet>#{p.address}</h:column>
+				<h:column><f:facet name="header">Email</f:facet>#{p.email}</h:column>
+				<h:column><f:facet name="header">Username</f:facet>#{p.username}</h:column>
 				<h:column>
 					<f:facet name="header">Update</f:facet>
 					<button onclick="document.getElementById('modalUpdateProfile').style.display='block'" class="w3-button w3-green w3-round-xxlarge">UPDATE</button>
