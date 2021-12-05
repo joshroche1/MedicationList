@@ -156,10 +156,6 @@
             #{pr.sex}
           </h:column>
           <h:column>
-            <f:facet name="header">Token</f:facet>
-            #{pr.token}
-          </h:column>
-          <h:column>
             <f:facet name="header">Email</f:facet>
             #{pr.email}
           </h:column>
@@ -183,9 +179,6 @@
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">Password</label></f:facet>
               <h:inputSecret id="providerPassword" value="#{beanDButil.password}" class="w3-input w3-border" />
-            </h:column>
-            <h:column><f:facet name="header"><label class="w3-text-blue">Token</label></f:facet>
-              <h:inputSecret id="providerToken" value="#{beanDButil.token}" class="w3-input w3-border" />
             </h:column>
             <h:column><f:facet name="header"><label class="w3-text-blue">First Name</label></f:facet>
               <h:inputText id="providerFirstName" value="#{beanDButil.firstName}" class="w3-input w3-border" />
