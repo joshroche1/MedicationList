@@ -7,47 +7,44 @@ public class patientTests {
     @Test 
      registerPatientHappyPath() {
 
-        fail("placeholder until the method is implemented");
+        fail();
     }
     registerPatientSadPath(){
-        fail("placeholder until the method is implemented");
+       fail();
 
     }
     void authenticateHappyPath(){
-        fail("placeholder until the method is implemented");
-
+        fail();
     }
     void authenticateSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
     void updateProfileHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
 
     void updateProfileSadPath(){
-        fail("placeholder until the method is implemented");
-
+        fail();
     }
    
     void updatePasswordSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
 
     void updatePasswordHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
 
     }
 
     void getMedListSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
 
     void getMedListHappyPath(){
-        fail("placeholder until the method is implemented");
-
+        fail();
     }
 }
