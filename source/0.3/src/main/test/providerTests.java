@@ -8,69 +8,69 @@ public class providerTests {
     @Test 
      void registerProviderHappyPath() {
 
-        fail("placeholder until the method is implemented");
+        fail();
     }
     void registerProviderSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
     void authenticateProviderHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
     void authenticateProviderSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
     void updateProfileProviderHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
 
     void updateProfileProviderSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
    
     void updatePasswordProviderSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
 
     void updatePasswordProviderHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
 
     }
 
     void getPatientListSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
 
     void getPatientListHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
     
     void updatePatientHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
 
     void updatePatientSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
 
     void addMedicationHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
     void addMedicationSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
     }
     void delMedicationHappyPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
     void delMedicationSadPath(){
-        fail("placeholder until the method is implemented");
+        fail();
 
     }
 
